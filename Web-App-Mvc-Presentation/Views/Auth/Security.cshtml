@@ -1,4 +1,6 @@
 ﻿@model AccountDetailsViewModel
+
+
 @{
     ViewData["Title"] = "Security";
    
@@ -12,13 +14,12 @@
     <div class="container">
         <div class="leftside">
             <div class="profile">
-
-                <a href="">
-
-                    <img src="~/images/avatar.svg" alt="">
-                    <h4>@Model.User.Email</h4>
-                    <p>@Model.User.FirstName @Model.User.LastName"</p>
+                <a href="#">
+                    <img src="~/images/@Model.ProfileInfo?.ProfileImage" alt="logo" /></Link>
+                    <h4>@Model.ProfileInfo?.FirstName</h4>
+                    <p>@Model.ProfileInfo?.FirstName @Model.ProfileInfo?.LastName</p>
                 </a>
+
             </div>
             <div class="btn-submit">
                 <div class="btn">
@@ -33,12 +34,16 @@
                 <div class="btn">
                     <a class="btn-theme" asp-controller="Auth" asp-action="Logout"><i class="fa-regular fa-lock"></i>Sign Out</a>
                 </div>
+
             </div>
         </div>
         <div class="right-side">
             <h1>Security</h1>
-
-            <form method="post" asp-controller="Auth" asp-action="SignUp">
+            @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
+            {
+                <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+            }
+            <form method="post" asp-controller="Auth" asp-action="Security">
 
                 <h4>Password</h4>
 
@@ -46,21 +51,21 @@
                 <div class="content">
 
                     <div id="form-password" class="input-group">
-                        <label>Current Password</label>
-                        <span></span>
-                        <input />
+                        <label asp-for="SecurityInfo.Password">Password</label>
+                        <span asp-validation-for="SecurityInfo.Password"></span>
+                        <input asp-for="SecurityInfo.Password"/>
 
                     </div>
                     <div id="form-password" class="input-group">
-                        <label>New Password</label>
-                        <span></span>
-                        <input />
+                        <label asp-for="SecurityInfo.Password">New Password</label>
+                        <span asp-validation-for="SecurityInfo.NewPassword"></span>
+                        <input asp-for="SecurityInfo.NewPassword" />
 
                     </div>
                     <div id="form-password" class="input-group">
-                        <label>Confirm new Password</label>
-                        <span></span>
-                        <input />
+                        <label asp-for="SecurityInfo.Password">Confirm Password</label>
+                        <span asp-validation-for="SecurityInfo.ConfirmPasword"></span>
+                        <input asp-for="SecurityInfo.ConfirmPasword" />
 
                     </div>
 
@@ -70,7 +75,12 @@
                     </div>
 
                 </div>
-
+                @if (ViewData["SuccessMessage"] != null)
+                {
+                    <div class="success-message">
+                        @ViewData["SuccessMessage"]
+                    </div>
+                }
             </form>
             <div class="deleted">
 

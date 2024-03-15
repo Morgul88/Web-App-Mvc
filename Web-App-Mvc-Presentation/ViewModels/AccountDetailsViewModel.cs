@@ -12,4 +12,6 @@ public class AccountDetailsViewModel
     public BasicInfoDetailViewModel BasicInfo { get; set; } = null!;
 
     public ProfileInfoViewModel ProfileInfo { get; set; } = null!;
+
+    public SecurityInfoViewModel SecurityInfo { get; set; } = null!;
 }

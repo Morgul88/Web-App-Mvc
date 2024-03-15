@@ -258,13 +258,17 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
         if(user != null)
         {
             var adress = await _adressService.GetAddressAsync(user.Id);
-            return new AdressDetailViewModel
+            if(adress != null) 
             {
-                AdressLine_1 = adress.StreetName,
-                AdressLine_2 = adress.AddressLine_2,
-                PostalCode = adress.PostalCode,
-                City = adress.City,
-            };
+                return new AdressDetailViewModel
+                {
+                    AdressLine_1 = adress.StreetName,
+                    AdressLine_2 = adress.AddressLine_2,
+                    PostalCode = adress.PostalCode,
+                    City = adress.City,
+                };
+            }
+            
         }
 
         return new AdressDetailViewModel();
@@ -319,9 +323,54 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
             User = userEntity!
         };
 
-
         return View(viewModel);
 
+    }
+    [HttpPost]
+    [Route("/security")]
+    public async Task<IActionResult> Security(AccountDetailsViewModel viewModel)
+    {
+        if (viewModel.SecurityInfo != null)
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if(user != null)
+            {
+                var result = await _userManager.CheckPasswordAsync(user, viewModel.SecurityInfo.Password);
+
+                if (result)
+                {
+                    var changePassword = await _userManager.ChangePasswordAsync(user,viewModel.SecurityInfo.Password,viewModel.SecurityInfo.NewPassword);
+                    
+                    
+                    if(changePassword.Succeeded)
+                    {
+                        var updatedResult = await _userManager.UpdateAsync(user);
+                        if (updatedResult.Succeeded)
+                        {
+                            ViewData["SuccessMessage"] = "Data saved successfully";
+                            return View(viewModel);
+                        }
+                        else
+                        {
+
+                            ModelState.AddModelError(string.Empty, "Something went wrong.");
+                            return View(viewModel);
+                        }
+
+                    }
+                }
+                else
+                {
+                    
+                    ModelState.AddModelError(string.Empty, "Password didnt match.");
+                    return View(viewModel);
+                }
+            }
+            
+        }
+        
+        return View(viewModel);
     }
     #endregion
 }
