@@ -14,4 +14,6 @@ public class AccountDetailsViewModel
     public ProfileInfoViewModel ProfileInfo { get; set; } = null!;
 
     public SecurityInfoViewModel SecurityInfo { get; set; } = null!;
+
+    public DeleteAccountModel? DeleteAccount { get; set; }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Infrastructure.Helpers;
+using System.ComponentModel.DataAnnotations;
 
 namespace Web_App_Mvc_Presentation.Models;
 
@@ -21,5 +22,9 @@ public class SecurityModel
     [Compare(nameof(Password), ErrorMessage = "Password doesnt match")]
     [Required(ErrorMessage = "Invalid Password")]
     public string ConfirmPasword { get; set; } = null!;
+
+    [Display(Name = "Yes, I want to delete my account", Order = 5)]
+    [CheckBoxRequired(ErrorMessage = "You must accept the terms and condition to proceed.")]
+    public bool DeleteAccount { get; set; }
 
 }

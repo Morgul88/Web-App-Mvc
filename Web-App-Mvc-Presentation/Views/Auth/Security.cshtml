@@ -82,17 +82,21 @@
                     </div>
                 }
             </form>
-            <div class="deleted">
+            <form method="post" asp-controller="Auth" asp-action="Security">
 
-                <h4>Delete account</h4>
-                <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
-                <input type="checkbox">
-                <label for="check-box">Yes, i want to delte my account</label>
-                <div class="btn-delete">
-                    <button class="btn-theme">Delete</button>
+                <div class="deleted">
+
+                    <h4>Delete account</h4>
+                    <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
+                    <input type="checkbox" asp-for="DeleteAccount.DeleteAccount">
+                    <label asp-for="DeleteAccount">Yes, i want to delete my account</label>
+                    <div class="btn-delete" asp-validation>
+                        <button class="btn-theme" type="submit">Delete</button>
+                    </div>
+
                 </div>
-
-            </div>
+            </form>
+            
         </div>
     </div>
 </section>

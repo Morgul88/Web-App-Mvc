@@ -100,7 +100,9 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
+        TempData["SuccessMessage"] = "Account was removed, you have logged out";
         return RedirectToAction("Index", "Home");
+        
     }
     #endregion
 
@@ -334,16 +336,16 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
         {
             var user = await _userManager.GetUserAsync(User);
 
-            if(user != null)
+            if (user != null)
             {
                 var result = await _userManager.CheckPasswordAsync(user, viewModel.SecurityInfo.Password);
 
                 if (result)
                 {
-                    var changePassword = await _userManager.ChangePasswordAsync(user,viewModel.SecurityInfo.Password,viewModel.SecurityInfo.NewPassword);
-                    
-                    
-                    if(changePassword.Succeeded)
+                    var changePassword = await _userManager.ChangePasswordAsync(user, viewModel.SecurityInfo.Password, viewModel.SecurityInfo.NewPassword);
+
+
+                    if (changePassword.Succeeded)
                     {
                         var updatedResult = await _userManager.UpdateAsync(user);
                         if (updatedResult.Succeeded)
@@ -362,15 +364,40 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
                 }
                 else
                 {
-                    
+
                     ModelState.AddModelError(string.Empty, "Password didnt match.");
                     return View(viewModel);
                 }
             }
+
+        }
+
+
+
+        if (viewModel.DeleteAccount?.DeleteAccount ?? false)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null)
+            {
+                var deleteResult = await _userManager.DeleteAsync(user!);
+
+                if (deleteResult.Succeeded)
+                {
+                    TempData["SuccessMessage"] = "Account was removed";
+                    return RedirectToAction("Logout", "Auth");
+
+                }
+
+                ViewData["ErrorMessage"] = "Something went wrong";
+                return View(viewModel);
+            }
             
         }
-        
+
+        ViewData["ErrorMessage"] = "You have to check the box to delete..";
         return View(viewModel);
     }
+    
+
     #endregion
 }
