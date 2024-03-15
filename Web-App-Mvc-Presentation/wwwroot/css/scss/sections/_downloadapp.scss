@@ -1,0 +1,55 @@
+#download-app {
+    background-color: $theme-opacity;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    .container {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        display: flex;
+
+        .picture {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .manage-work {
+            p {
+                margin: 0;
+            }
+
+            padding: 0px;
+
+            .app-store {
+                justify-content: space-between;
+                margin-bottom: 50px;
+                display: flex;
+                align-items: center;
+
+                p {
+                    margin: 0;
+                }
+
+                h4 {
+                    padding: 0;
+                }
+            }
+
+            .google-store {
+                justify-content: space-between;
+                margin-bottom: 50px;
+                display: flex;
+                align-items: center;
+
+                p {
+                    margin: 0;
+                }
+
+                h4 {
+                    padding: 0;
+                }
+            }
+        }
+    }
+}

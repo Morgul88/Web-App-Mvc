@@ -1,0 +1,100 @@
+﻿
+@{
+
+    ViewData["Title"] = "Contacts";
+
+
+},
+
+<section id="contact">
+
+    <div class="container">
+
+        <div class="navigation">
+            <i class="fa-thin fa-house"></i>
+            <a href="home.html">Home</a>
+            <i class="fa-thin fa-arrow-right"></i>
+            <a href="courses.html">Courses</a>
+        </div>
+
+        <div class="contact-info">
+            <div class="info">
+                <h1>Contact Us</h1>
+                <div class="details">
+                    <img src="~/images/asd.svg" alt="">
+                    <div class="box-detail">
+                        <h4>Email us</h4>
+                        <p>Please feel free to drop us a line. We will respond as soon as possible.</p>
+                        <a href="">Leave a message<i class="fa-thin fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="info">
+
+                    <div class="details">
+                        <img src="~/images/abc.svg" alt="">
+                        <div class="box-detail">
+                            <h4>Careers</h4>
+                            <p>Sit ac ipsum leo lorem magna nunc mattis maecenas non vestibulum.</p>
+                            <a href="">Send an application<i class="fa-thin fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form">
+                <form method="post" asp-controller="Contact" asp-action="contacts">
+                    <h1>Get in Contact With Us</h1>
+                    <div class="message-sent">
+                        <span class="hidden">Hidden</span>
+                        
+                    </div>
+                    <div class="content">
+
+                        <div id="form-firstname" class="input-group">
+                            <div class="input-group-flex">
+                                <label>Full name</label>
+                                <span></span>
+                            </div>
+
+                            <input/>
+
+                        </div>
+
+                        <div id="form-email" class="input-group">
+                            <div class="input-group-flex">
+                                <label>Email</label>
+                                <span></span>
+                            </div>
+                            <input/>
+                        </div>
+
+                        <div id="form-Service" class="input-group">
+                            <div class="input-group-flex">
+                                <label>Service (optional)</label>
+                                <span></span>
+                            </div>
+                            <input/>
+                        </div>
+                        <div id="form-Message" class="input-group">
+                            <div class="input-group-flex">
+                                <label>Message</label>
+                                <span></span>
+                            </div>
+                            <textarea id="message" rows="4" cols="50"></textarea>
+                        </div>
+
+                        <div class="btn-submit">
+                            <button class="btn-theme-s" type="submit">Send Contact Request</button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="map">
+        <img src="~/images/map.svg" alt="">
+    </div>
+</section>

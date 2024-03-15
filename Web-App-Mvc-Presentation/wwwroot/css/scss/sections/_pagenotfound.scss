@@ -1,0 +1,17 @@
+#pagenotfound {
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .page {
+            padding-top: 200px;
+            padding-bottom: 200px;
+            text-align: center;
+
+            a {
+                margin-top: 30px;
+            }
+        }
+    }
+}

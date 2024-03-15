@@ -1,0 +1,88 @@
+﻿@model AccountDetailsViewModel
+@{
+    ViewData["Title"] = "Security";
+   
+
+}
+@{
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+}
+
+<section id="security">
+    <div class="container">
+        <div class="leftside">
+            <div class="profile">
+
+                <a href="">
+
+                    <img src="~/images/avatar.svg" alt="">
+                    <h4>@Model.User.Email</h4>
+                    <p>@Model.User.FirstName @Model.User.LastName"</p>
+                </a>
+            </div>
+            <div class="btn-submit">
+                <div class="btn">
+                    <a class="@((currentAction == "Details") ? "btn-theme active" : "btn-theme")" asp-controller="Auth" asp-action="Details"><i class="fa-regular fa-gear"></i>Account Details</a>
+                </div>
+                <div class="btn">
+                    <a class="@((currentAction == "Security") ? "btn-theme active" : "btn-theme")" asp-controller="Auth" asp-action="Security"><i class="fa-regular fa-lock"></i>Security</a>
+                </div>
+                <div class="btn">
+                    <a class="btn-theme" asp-controller="Account" asp-action="SavedItems"><i class="fa-regular fa-bookmark"></i></i>Saved Courses</a>
+                </div>
+                <div class="btn">
+                    <a class="btn-theme" asp-controller="Auth" asp-action="Logout"><i class="fa-regular fa-lock"></i>Sign Out</a>
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <h1>Security</h1>
+
+            <form method="post" asp-controller="Auth" asp-action="SignUp">
+
+                <h4>Password</h4>
+
+
+                <div class="content">
+
+                    <div id="form-password" class="input-group">
+                        <label>Current Password</label>
+                        <span></span>
+                        <input />
+
+                    </div>
+                    <div id="form-password" class="input-group">
+                        <label>New Password</label>
+                        <span></span>
+                        <input />
+
+                    </div>
+                    <div id="form-password" class="input-group">
+                        <label>Confirm new Password</label>
+                        <span></span>
+                        <input />
+
+                    </div>
+
+                    <div class="btn-submit">
+                        <button class="btn-theme" type="reset">Cancel</button>
+                        <button class="btn-theme" type="submit">Change Password</button>
+                    </div>
+
+                </div>
+
+            </form>
+            <div class="deleted">
+
+                <h4>Delete account</h4>
+                <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
+                <input type="checkbox">
+                <label for="check-box">Yes, i want to delte my account</label>
+                <div class="btn-delete">
+                    <button class="btn-theme">Delete</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

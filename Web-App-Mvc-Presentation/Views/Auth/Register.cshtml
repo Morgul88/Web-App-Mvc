@@ -1,0 +1,79 @@
+﻿@model RegistrationModel
+
+@{
+    ViewData["Title"] = "Sign up";
+}
+
+<section id="signup">
+    <div class="container">
+        <form novalidate method="post" asp-controller="Auth" asp-action="Register">
+            <h1>Create Account</h1>
+            <p>Already have an account?<a class="sing-in-here" asp-controller="Auth" asp-action="Login"> Sign in here</a></p>
+
+
+            <div class="content">
+                <div class="first-group">
+                    <div id="form-firstname" class="input-group">
+                        <div class="input-group-flex">
+                            <label asp-for="FirstName">First name</label>
+                            <span asp-validation-for="FirstName"></span>
+                        </div>
+                        <input asp-for="FirstName" />
+                    </div>
+                    <div id="form-lastname" class="input-group">
+                        <div class="input-group-flex">
+                            <label asp-for=LastName>Last name</label>
+                            <span asp-validation-for="LastName"></span>
+                        </div>
+                        <input asp-for="LastName" />
+                    </div>
+                </div>
+
+                <div id="form-email" class="input-group">
+                    <div class="input-group-flex">
+                        <label asp-for=EmailAdress>Email</label>
+                        <span asp-validation-for="EmailAdress"></span>
+                    </div>
+                    <input asp-for="EmailAdress" />
+                </div>
+                <div id="form-password" class="input-group">
+                    <div class="input-group-flex">
+                        <label asp-for=Password>Password</label>
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    <input asp-for="Password" />
+
+                </div>
+                <div id="form-confirm" class="input-group">
+                    <div class="input-group-flex">
+                        <label asp-for=ConfirmPasword>Confirm Password</label>
+                        <span asp-validation-for="ConfirmPasword"></span>
+                    </div>
+                    <input asp-for="ConfirmPasword" />
+                </div>
+                <div id="form-terms" class="input-group">
+                    <div class="check-box">
+                        <input type="checkbox" asp-for="TermsAndConditions" />
+                        <label asp-for="TermsAndConditions">I agree to the <a class="a-tag" asp-controller="About" asp-action="Terms">Terms</a> & <a class="a-tag" asp-controller="About" asp-action="Conditions">Conditions</a></label>
+                        <div>
+                            <span asp-validation-for="TermsAndConditions"></span>
+                        </div> 
+
+                    </div>
+
+                </div>
+                <div class="btn-submit">
+                    <button class="btn-theme-s" type="submit">Submit</button>
+                </div>
+                
+                @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
+                {
+                    <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+                }
+            </div>
+
+        </form>
+    </div>
+</section>
+
+@await Html.PartialAsync("_ValidationScriptPartial")

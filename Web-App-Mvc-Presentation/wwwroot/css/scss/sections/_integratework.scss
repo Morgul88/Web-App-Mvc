@@ -1,0 +1,40 @@
+#integrate-work {
+    margin-top: 100px;
+
+    .container {
+
+
+        .head-line {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+
+        .boxes-and-icons {
+            padding: 10px;
+
+            img {
+                padding-bottom: 15px;
+            }
+        }
+
+        .box {
+            display: flex;
+            gap: 30px;
+
+            .link-box {
+                text-decoration: none;
+                color: black;
+                padding: 10px;
+                transition: 1s;
+
+                :hover {
+                    background-color: $theme-opacity;
+                    border-radius: 20px;
+                    transition: 0.5s;
+                }
+            }
+        }
+    }
+}

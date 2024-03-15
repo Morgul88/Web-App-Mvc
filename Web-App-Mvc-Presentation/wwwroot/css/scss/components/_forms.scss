@@ -1,0 +1,22 @@
+textarea{
+    padding: 1rem;
+    resize: none;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid rgb(207, 207, 207);
+}
+.message-sent{
+
+}
+.alert alert-danger {
+    margin-top: 50px;
+}
+
+.success-message{
+    background-color:lightgreen;
+    padding:10px;
+    width:30%;
+    margin-top:10px;
+    border-radius:30px;
+    align-items:center;
+}

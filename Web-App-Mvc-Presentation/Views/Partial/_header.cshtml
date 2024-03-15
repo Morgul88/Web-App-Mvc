@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Header";
+}
+
+<header>
+    <div class="container">
+        <div class="first-head">
+            <div id="logo" >
+                <img src="~/images/Group 2.svg" alt="logo" /></Link>
+                <span>Silicon</span>
+            </div>
+            <div id="menu">
+                <nav>
+                    <a asp-controller="Home" asp-action="Index" asp-fragment="overview" class="menu-link">Overview</a>
+                    <a asp-controller="Home" asp-action="Index" asp-fragment="features" class="menu-link">Features</a>
+                    <a a asp-controller="Home" asp-action="Contacts" class="menu-link">Contact</a>
+                    @if (User.Identity!.IsAuthenticated)
+                    {
+                        <a a asp-controller="Course" asp-action="CourseView" class="menu-link-login">Courses</a>
+                    }
+                </nav>
+
+            </div>
+        </div>
+
+
+        <div class="head-btn">
+
+            <div class="btn-switch">
+                <label>Light</label>
+                <label class="switch" for="switch-mode">
+                    <input type="checkbox" class="switch-mode" onclick="switchBackground()">
+                    <div class="slider round"></div>
+                </label>
+                <label>Dark</label>
+            </div>
+
+            <div class="account-buttons">
+                @if (!User.Identity!.IsAuthenticated)
+                {
+                    <a class="btn-gray" asp-controller="Auth" asp-action="Login"><i class="fa-regular fa-right-to-bracket"></i><span>Sign in</span></a>
+                    <a class="btn-theme" asp-controller="Auth" asp-action="Register"><i class="fa-regular fa-user"></i><span>Sign up</span></a>
+                }
+              
+                @if (User.Identity!.IsAuthenticated)
+                {
+                    
+                    
+                    <a class="btn-theme" asp-controller="Auth" asp-action="Logout"><i class="fa-regular fa-user"></i><span>Log out</span></a>
+                    
+                    <a asp-controller="Auth" asp-action="Details"><img src="~/images/avatar.svg" alt=""></a>
+                }
+                
+            </div>
+
+        </div>
+
+    </div>
+
+</header>

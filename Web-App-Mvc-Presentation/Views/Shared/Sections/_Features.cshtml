@@ -1,0 +1,66 @@
+﻿
+<section id="features">
+    <div class="container">
+        <h1>What Do You Get with Our Tool?</h1>
+        <p>Make sure all your tasks are orginazed so you can set the priorities and focus on important.</p>
+        <div class="tool-features">
+            <div class="box box 6">
+                <img src="images/icon - Copy.svg" alt="">
+                <h5>Comment on Task</h5>
+                <p>Id mollis cosectur congue egestas egeasts suspendiess eblandit justo</p>
+            </div>
+            <div class="box box1">
+                <img src="images/icon-1 - Copy.svg" alt="">
+                <h5>Tasks Analystics</h5>
+                <p>Id mollis cosectur congue egestas egeasts suspendiess eblandit justo</p>
+            </div>
+            <div class="box box2">
+                <img src="images/icon-2 - Copy.svg" alt="">
+                <h5>Comment on Task</h5>
+                <p>Id mollis cosectur congue egestas egeasts suspendiess eblandit justo</p>
+            </div>
+            <div class="box box3">
+                <img src="images/icon (3).svg" alt="">
+                <h5>Comment on Task</h5>
+                <p>Id mollis cosectur congue egestas egeasts suspendiess eblandit justo</p>
+            </div>
+            <div class="box box4">
+                <img src="images/icon (4).svg" alt="">
+                <h5>Comment on Task</h5>
+                <p>Id mollis cosectur congue egestas egeasts suspendiess eblandit justo</p>
+            </div>
+            <div class="box box5">
+                <img src="/images/icon (1).svg" alt="">
+                <h5>Comment on Task</h5>
+                <p>Id mollis cosectur congue egestas egeasts suspendiess eblandit justo</p>
+            </div>
+        </div>
+    </div>
+</section> 
+
+@* @inject FeatureService _featureService
+
+@{
+    var result = await _featureService.GetAllFeaturesAsync();
+    List<FeatureEntity> content = (List<FeatureEntity>)result.ContentResult!;
+    var feature = content.First();
+}
+
+@if(content != null){
+    <section id="features">
+        <div class="container">
+            <h1>@feature.Title</h1>
+            <p>@feature.Ingress</p>
+            <div class="tool-features">
+                @foreach(var item in feature.FeaturesItems)
+                {
+                    <div class="box box1">
+                        <img src="images/@item.ImageUrl" alt="">
+                        <h5>@item.Title</h5>
+                        <p>@item.Text</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+} *@

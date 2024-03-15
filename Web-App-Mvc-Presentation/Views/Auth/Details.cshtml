@@ -1,0 +1,170 @@
+﻿
+@model AccountDetailsViewModel
+@{
+    ViewData["Title"] = $"{@Model.BasicInfo?.FirstName} {@Model.BasicInfo?.LastName}";
+    
+}
+@{
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+}
+
+
+<section id="account-detail">
+    <div class="container">
+        <div class="leftside">
+            <div class="profile">
+                <a href="#">
+                    <img src="~/images/@Model.ProfileInfo.ProfileImage" alt="logo" /></Link>
+                    <h4>@Model.ProfileInfo?.FirstName</h4>
+                    <p>@Model.ProfileInfo?.FirstName @Model.ProfileInfo?.LastName</p>
+                </a>
+
+            </div>
+            <div class="btn-submit">
+                <div class="btn">
+                    <a class="@((currentAction == "Details") ? "btn-theme active" : "btn-theme")" asp-controller="Auth" asp-action="Details"><i class="fa-regular fa-gear"></i>Account Details</a>
+                </div>
+                <div class="btn">
+                    <a class="@((currentAction == "Security") ? "btn-theme active" : "btn-theme")" asp-controller="Auth" asp-action="Security"><i class="fa-regular fa-lock"></i>Security</a>
+                </div>
+                <div class="btn">
+                    <a class="btn-theme" asp-controller="Account" asp-action="SavedItems"><i class="fa-regular fa-bookmark"></i></i>Saved Courses</a>
+                </div>
+                <div class="btn">
+                    <a class="btn-theme" asp-controller="Auth" asp-action="Logout"><i class="fa-regular fa-lock"></i>Sign Out</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="right-side">
+            <h1>Account Details</h1>
+            @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
+            {
+                <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+            }
+            
+            <form novalidate method="post" asp-controller="Auth" asp-action="Details">
+
+                <h4>
+                    Basic Info
+                </h4>
+                <div class="content">
+                    <div class="first-group">
+                        <div id="form-firstname" class="input-group">
+                            <div class="input-group-flex">
+                                <label asp-for="BasicInfo.FirstName"></label>
+                                <span asp-validation-for="BasicInfo.FirstName"></span>
+                            </div>
+                            <input asp-for="BasicInfo.FirstName"/>
+                        </div>
+                        <div id="form-lastname" class="input-group">
+                            <div class="input-group-flex">
+                                <label asp-for="BasicInfo.LastName"></label>
+                                <span asp-validation-for="BasicInfo.LastName"></span>
+                            </div>
+                            <input asp-for="BasicInfo.LastName" />
+                        </div>
+
+                    </div>
+                    <div class="first-group">
+                        <div id="form-firstname" class="input-group">
+                            <div class="input-group-flex">
+                                <label asp-for="BasicInfo.EmailAdress"></label>
+                                <span asp-validation-for="BasicInfo.EmailAdress"></span>
+                            </div>
+                            <input asp-for="BasicInfo.EmailAdress" />
+                        </div>
+                        <div id="form-lastname" class="input-group">
+                            <div class="input-group-flex">
+                                <label asp-for="BasicInfo.Phone"></label>
+                                <span asp-validation-for="BasicInfo.Phone"></span>
+                            </div>
+                            <input asp-for="BasicInfo.Phone" />
+                        </div>
+
+                    </div>
+
+                    <div id="form-bio" class="input-group">
+                        <div class="input-group-flex">
+                            <label asp-for="BasicInfo.Biography"></label>
+                            <span asp-validation-for="BasicInfo.Biography"></span>
+                        </div>
+                        <textarea asp-for="BasicInfo.Biography" class="text-area"></textarea>
+                    </div>
+
+
+                    <div class="cancel-save">
+                        <div class="cancel">
+                            <button class="btn-gray" type="reset">Cancel</button>
+                        </div>
+                        <div class="save">
+                            <button class="btn-theme-s" type="submit">Save Changes</button>
+                        </div>
+                    </div>
+                    @if (ViewData["SuccessMessage"] != null)
+                    {
+                        <div class="success-message">
+                            @ViewData["SuccessMessage"]
+                        </div>
+                    }
+                </div>
+
+            </form>
+
+            <div class="adress-info">
+                <form novalidate method="post" asp-controller="Auth" asp-action="Details">
+
+                    <h4>
+                        Adress info
+                    </h4>
+                    <div class="content">
+
+                        <div id="form-firstname" class="input-group">
+                            <div class="input-group-flex">
+                                <label asp-for="AdressInfo.AdressLine_1"></label>
+                                <span asp-validation-for="AdressInfo.AdressLine_1"></span>
+                            </div>
+                            <input asp-for="AdressInfo.AdressLine_1" />
+                        </div>
+                        <div id="form-lastname" class="input-group">
+                            <div class="input-group-flex">
+                                <label asp-for="AdressInfo.AdressLine_2"></label>
+                                <span asp-validation-for="AdressInfo.AdressLine_2"></span>
+                            </div>
+                            <input asp-for="AdressInfo.AdressLine_2" />
+                        </div>
+
+                        <div class="first-group">
+                            <div id="form-email" class="input-group">
+                                <div class="input-group-flex">
+                                    <label asp-for="AdressInfo.PostalCode"></label>
+                                    <span asp-validation-for="AdressInfo.PostalCode"></span>
+                                </div>
+                                <input asp-for="AdressInfo.PostalCode" />
+                            </div>
+                            <div id="form-phone" class="input-group">
+                                <div class="input-group-flex">
+                                    <label asp-for="AdressInfo.City"></label>
+                                    <span asp-validation-for="AdressInfo.City"></span>
+                                </div>
+                                <input asp-for="AdressInfo.City" />
+                            </div>
+                        </div>
+
+                        <div class="cancel-save">
+                            <div class="cancel">
+                                <button class="btn-gray" type="reset">Cancel</button>
+                            </div>
+                            <div class="save">
+                                <button class="btn-theme-s" type="submit">Save Changes</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

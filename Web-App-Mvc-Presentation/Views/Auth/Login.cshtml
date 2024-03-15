@@ -1,0 +1,64 @@
+﻿@model LoginModel
+
+@{
+    ViewData["Title"] = "Sign in";
+}
+
+<section id="signin">
+    <div class="container">
+        <form method="post" asp-controller="Auth" asp-action="Login" novalidate>
+            <div class="error-message">
+                <span class="hidden">Hidden</span>
+                
+            </div>
+            
+            <h1>Welcome Back</h1>
+            <p>Dont you have an account yet?<a class="sign-in-here" asp-controller="Auth" asp-action="Register"> Sign up here</a></p>
+            @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
+            {
+                <div class="alert alert-danger">@ViewData["ErrorMessage"]</div>
+            }
+
+            <div class="content">
+
+                <div id="form-email" class="input-group">
+                    <div class="input-group-flex">
+                        <label asp-for=Email>Email</label>
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                    <input asp-for="Email" />
+
+
+
+                </div>
+                <div id="form-password" class="input-group">
+                    <div class="input-group-flex">
+                        <label asp-for=Password>Password</label>
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    <input asp-for="Password" />
+                </div>
+                <div id="form-remember" class="check">
+                   @*  <input type="checkbox" asp-for="Form.RememberMe">
+                    <label asp-for=Form.RememberMe>Remember Me</label> *@
+                </div>
+
+                <div class="btn-submit">
+                    <button id="form-submit" class="btn-theme-s" type="submit">Sign In</button>
+                </div>
+
+                <div class="password" asp-controller="Account" asp-action="Forgot">
+                    <a href="">Forget your password?</a>
+                </div>
+                <div class="network">
+                    <p>Or sign in with your social network</p>
+                </div>
+                <div class="account-buttons">
+                    <a class="btn-gray" href="#"><i class="fa-brands fa-youtube"></i></i><p>Google</p></a>
+                    <a class="btn-gray" href="#"><i class="fa-brands fa-square-facebook"></i><p>Facebook</p></a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>

@@ -1,0 +1,68 @@
+#dont-miss-anything {
+    background-color: $theme-opacity;
+
+    .container {
+        padding-left: 100PX;
+        padding-right: 100PX;
+        margin-top: 100px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+
+        .head-line {
+            display: flex;
+            justify-content: center;
+
+            img {
+                padding-left: 10px;
+            }
+        }
+
+        .check-signup {
+            justify-content: space-around;
+            display: flex;
+            align-items: center;
+
+            .box {
+                display: block;
+                padding: 20px;
+
+                label {
+                    padding: 5px;
+                    font-size: 20px;
+                }
+
+                h4 {
+                    width: 70%;
+                }
+
+                input[type="checkbox"] {
+                    width: 30px;
+                    height: 20px;
+                    background-color: #ccc;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+
+
+                input[type="checkbox"]:checked {
+                    background-color: #007bff;
+                }
+            }
+        }
+
+        .sub {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+
+            input {
+                border-radius: 10px;
+                width: 100%;
+                margin-right: 30px;
+                border: 1px solid rgb(207, 207, 207);
+                padding: 10px;
+            }
+        }
+    }
+}

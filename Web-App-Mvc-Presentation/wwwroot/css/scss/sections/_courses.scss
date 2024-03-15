@@ -1,0 +1,136 @@
+#courses {
+    .container {
+        .side-selection {
+            display: Flex;
+            justify-content: center;
+            align-items: center;
+
+            a {
+                margin: 10px;
+            }
+
+            .test {
+                background-color: $theme-opacity;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                :hover {
+                    background-color: blue;
+                }
+            }
+        }
+
+        .box-row {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+
+            .box-link {
+
+                :hover {
+                    background-color: $theme-opacity;
+                    border-radius: 10px;
+                }
+            }
+
+            .box {
+                position: relative;
+                z-index: 0;
+
+                .marks {
+                    position: absolute;
+                    right: 15px;
+                    top: 15px;
+                    z-index: 10;
+                }
+
+                .badge {
+                    position: absolute;
+                    left: 15px;
+                    top: 15px;
+                    z-index: 10;
+                }
+
+                img {
+                    border-radius: 10px;
+                }
+
+                .line {
+                    display: Flex;
+                    border-top: 1px solid rgb(228, 226, 226);
+
+                    p {
+                        padding-right: 20px;
+                    }
+                }
+            }
+        }
+
+        .navigation {
+            a {
+                padding-right: 10px;
+            }
+
+            i {
+                padding-right: 10px;
+            }
+        }
+
+        .links {
+            display: flex;
+            padding: 10px;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            ;
+
+            i {
+                padding: 10px;
+            }
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+
+            details {
+                padding: 10px;
+            }
+
+            form {
+                padding: 10px;
+            }
+        }
+
+        .next-level {
+            background-color: $theme-opacity;
+            display: Flex;
+            padding: 30px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+
+            .content {
+                padding: 30px;
+                width: 50%;
+
+                h5 {
+                    font-weight: 200;
+                    margin-bottom: 30px;
+                    margin-top: 30px;
+                }
+
+                h1 {
+                    margin-bottom: 30px;
+                }
+
+                a {
+                    width: 30%;
+                    height: 50px;
+                }
+            }
+        }
+    }
+}

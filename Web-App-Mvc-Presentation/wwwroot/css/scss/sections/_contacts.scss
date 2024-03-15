@@ -1,0 +1,132 @@
+#contact {
+    background-color: $theme-opacity;
+    position: relative;
+
+    .map {
+        position: relative;
+        z-index: 1;
+
+        img {
+            width: 100%;
+            z-index: 1;
+        }
+    }
+
+    .container {
+
+        .contact-info {
+            display: flex;
+            padding-top: 100px;
+            padding-bottom: 100px;
+
+            .info {
+                position: relative;
+                z-index: 0;
+                padding-right: 70px;
+                padding-top: 30px;
+                padding-bottom: 30px;
+
+                h1 {
+                    padding-bottom: 50px;
+                }
+
+                .details {
+                    display: flex;
+
+                    img {
+                        padding-right: 30px;
+                    }
+
+                    .box-detail {
+                        i {
+                            padding-left: 10px;
+                        }
+                    }
+                }
+            }
+
+
+
+            form {
+                position: absolute;
+                z-index: 10;
+                box-shadow: 5px 5px 10px rgba(190, 190, 190, 0.5);
+                padding: 80px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                border: 1px solid rgb(238, 238, 238);
+
+                .hidden {
+                    visibility: hidden;
+                }
+
+                span {
+                    color: red;
+                }
+
+
+
+                .message-sent {
+                    color: green;
+                    text-align: center;
+                }
+
+                h1 {
+                    padding-bottom: 30px;
+                }
+
+                .sign-in-here:hover {
+                    cursor: pointer;
+                }
+
+                .content {
+
+                    .btn-submit {
+                        display: flex;
+                        justify-content: center;
+                        padding-top: 30px;
+                        width: 50%;
+                    }
+
+
+                    .input-group {
+                        padding: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        .input-group-flex {
+                            display: flex;
+                            justify-content: space-between
+                        }
+                    }
+
+                    input {
+                        border-radius: 10px;
+                        padding: 10px;
+                        border: 1px solid rgb(207, 207, 207);
+                    }
+
+                    textarea {
+                        border: 1px solid rgb(207, 207, 207);
+                        border-radius: 10px;
+                    }
+
+                    label {
+                        padding-bottom: 10px;
+                        font-weight: 900;
+                        font-size: 20px;
+                    }
+
+                    .check-box {
+                        label {
+                            font-weight: 100;
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

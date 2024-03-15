@@ -1,0 +1,92 @@
+#signup {
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            padding: 100px;
+
+            .input-validation-error {
+                color: red;
+                border-color: red;
+            }
+
+            span {
+                color: red;
+                padding-right: 20px;
+            }
+
+
+            .sign-in-here:hover {
+                cursor: pointer;
+            }
+
+            .first-group {
+                display: flex;
+            }
+
+            .content {
+                
+                .btn-submit {
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+
+                .alert alert-danger {
+                    margin-top: 50px;
+                }
+
+                .input-group {
+                    padding: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    .input-group-flex {
+                        display: flex;
+                        justify-content: space-between
+                    }
+
+                    .input-valdation-error {
+                        border-color: red;
+                    }
+                }
+
+                select.input {
+                    border: none;
+                }
+
+                input {
+                    border-radius: 10px;
+                    padding: 10px;
+                    border: 1px solid rgb(207, 207, 207);
+                }
+
+                input:focus {
+                    outline: none;
+                }
+
+                label {
+                    padding-bottom: 5px;
+                    font-weight: 900;
+                    font-size: 20px;
+                }
+
+                .check-box {
+                    label {
+                        font-weight: 100;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

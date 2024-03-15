@@ -1,0 +1,111 @@
+header {
+
+
+    .container {
+        display: flex;
+        padding: 15px;
+        justify-content: space-between;
+
+        @include lg {
+        }
+
+        .first-head {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .head-btn {
+            display: flex;
+            padding: 10px;
+            gap: 2rem;
+        }
+
+        #logo {
+            display: flex;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: left;
+
+            span {
+                font-weight: 900;
+                font-size:25px;
+            }
+
+            
+
+            img {
+                transition: transform 0.3s;
+            }
+
+            img:hover {
+                transform: scale(1.2);
+            }
+
+            p {
+                align-items: center;
+            }
+        }
+
+        #menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: left;
+            gap: 1rem;
+
+
+            @include lg {
+            }
+
+            nav {
+
+                a {
+                    padding: 10px;
+                }
+
+                .menu-link-login {
+                    background-color: lightgreen;
+                    border-radius: 30px;
+                }
+            }
+        }
+
+        .btn-switch {
+            display: flex;
+            justify-content: right;
+
+            @include lg {
+            }
+        }
+
+        .account-buttons {
+            justify-content: right;
+            display: flex;
+            gap: 1rem;
+
+            @include lg {
+            }
+
+
+            img {
+                margin-left: 10px;
+                height: 45px;
+                width: 45px;
+                transition: transform 0.3s;
+            }
+
+            img:hover {
+                transform: scale(1.4);
+            }
+        }
+
+        .btn-mobile {
+
+
+            @include lg {
+            }
+        }
+    }
+}
