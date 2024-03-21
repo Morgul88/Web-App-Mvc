@@ -26,9 +26,12 @@
         .box-row {
             margin-top: 20px;
             display: flex;
+            flex-wrap: wrap;
             gap: 15px;
 
             .box-link {
+                flex: 0 0 calc(33.33% - 20px);
+                
 
                 :hover {
                     background-color: $theme-opacity;

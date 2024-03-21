@@ -1,0 +1,107 @@
+﻿@model CoursesInfoViewModel
+@{
+    ViewData["Title"] = "Courses";
+
+}
+
+<section id="courses">
+    <div class="container">
+
+
+        <div class="navigation">
+            <i class="fa-thin fa-house"></i>
+            <a href="home.html">Home</a>
+            <i class="fa-thin fa-arrow-right"></i>
+            <a href="courses.html">Courses</a>
+        </div>
+
+        <div class="links">
+
+            <h1>Courses</h1>
+            <div class="search-form">
+                <div>
+                    <details>
+                        <summary>All category</summary>
+                        <input type="text">
+                    </details>
+                </div>
+                <div>
+                    <form action="/search" method="get">
+                        <input type="text" name="query" placeholder="Sök här...">
+                        <i class="fa-regular fa-magnifying-glass"></i>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        @if(Model == null)
+        {
+            <div>
+                <h6>Loading...</h6>
+            </div>
+        }
+        else
+        {
+            <div class="box-row">
+                @foreach (var items in Model!.Courses)
+                {
+
+                    <a class="box-link" href="singlecourse.html">
+                        <div class="box">
+                            <div class="badge">
+                                <img src="images/badge.svg" alt="">
+                            </div>
+                            <div class="marks">
+                                <img src="images/S.svg" alt="">
+                            </div>
+                            <img src="~/images/@items.ImageName" alt="">
+                            <h6>@items.Title</h6>
+                            <p>@items.Author</p>
+                            <p>@items.OrginalPrice</p>
+                            <div class="line">
+                                <p>@items.Hours</p>
+                                <p>@items.DiscountPrice</p>
+                            </div>
+
+                        </div>
+                    </a>
+
+                };
+            </div>
+        }
+        
+        
+
+        <div class="side-selection">
+            <i class="fa-thin fa-arrow-left"></i>
+
+            <a class="test" href="">1</a>
+            <a class="test" href="">2</a>
+            <a class="test" href="">3</a>
+            <a class="test" href="">4</a>
+
+            <i class="fa-thin fa-arrow-right"></i>
+        </div>
+
+        <div class="next-level">
+
+            <div class="content">
+
+                <h5>Ready to get started?</h5>
+                <h1>Take Your Skills to the Next Level</h1>
+                <a class="btn-theme-s" href="#">Work with us</a>
+
+            </div>
+            <div class="background-image">
+                <img class="background-image" src="~/images/illustration.svg" alt="">
+            </div>
+
+        </div>
+        
+
+
+    </div>
+
+   
+    
+</section>

@@ -100,7 +100,7 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
-        TempData["SuccessMessage"] = "Account was removed, you have logged out";
+        TempData["SuccessMessage"] = "You have logged out";
         return RedirectToAction("Index", "Home");
         
     }
@@ -383,7 +383,9 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
 
                 if (deleteResult.Succeeded)
                 {
-                    TempData["SuccessMessage"] = "Account was removed";
+                    TempData["SuccessMessage"] = "Account was removed, you will be logged out soon...";
+                    
+                    await Task.Delay(5000);
                     return RedirectToAction("Logout", "Auth");
 
                 }

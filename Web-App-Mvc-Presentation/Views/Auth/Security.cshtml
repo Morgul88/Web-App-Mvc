@@ -93,7 +93,12 @@
                     <div class="btn-delete" asp-validation>
                         <button class="btn-theme" type="submit">Delete</button>
                     </div>
-
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <a class="alert alert-success" role="alert">
+                            @TempData["SuccessMessage"]
+                        </a>
+                    }
                 </div>
             </form>
             

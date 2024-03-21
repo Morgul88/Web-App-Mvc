@@ -1094,7 +1094,11 @@ footer .container .social-media {
 #courses .container .box-row {
   margin-top: 20px;
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
+}
+#courses .container .box-row .box-link {
+  flex: 0 0 calc(33.33% - 20px);
 }
 #courses .container .box-row .box-link :hover {
   background-color: rgba(99, 101, 241, 0.0784313725);

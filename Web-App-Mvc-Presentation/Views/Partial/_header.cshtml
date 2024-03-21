@@ -16,9 +16,9 @@
                     <a a asp-controller="Home" asp-action="Contacts" class="menu-link">Contact</a>
                     @if (User.Identity!.IsAuthenticated)
                     {
-                        <a a asp-controller="Course" asp-action="CourseView" class="menu-link-login">Courses</a>
+                        <a a asp-controller="Courses" asp-action="Index" class="menu-link-login">Courses</a>
                     }
-                    @if (TempData["SuccessMessage"] != null)
+                    @if (TempData["SuccessMessage"] != null && Context.Request.Path == "/")
                     {
                         <a class="alert alert-success" role="alert">
                             @TempData["SuccessMessage"]
