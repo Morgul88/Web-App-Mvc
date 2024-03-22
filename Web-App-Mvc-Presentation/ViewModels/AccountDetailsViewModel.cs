@@ -16,4 +16,6 @@ public class AccountDetailsViewModel
     public SecurityInfoViewModel SecurityInfo { get; set; } = null!;
 
     public DeleteAccountModel? DeleteAccount { get; set; }
+
+    public SubscribeModel? Subscribe { get; set; }
 }

@@ -1,4 +1,8 @@
-﻿<section id="dont-miss-anything">
+﻿@using Infrastructure.Entities
+
+@model  SubscribeModel
+
+<section id="dont-miss-anything">
     <div class="container">
         <div class="head-line">
             <h1>Dont Want to Miss Anything</h1>
@@ -41,10 +45,16 @@
 
 
         </div>
-        <div class="sub">
-            <input type="email">
-            <button class="btn-theme">Subscribe*</button>
-        </div>
+        <form class="sub" asp-action="Index" asp-controller="Subscribers" method="post">
+            <input type="email" asp-for="Email">
+            <button type="submit" class="btn-theme">Subscribe*</button>
+        </form>
         <p>* Yes, I agree yo the <a class="test">terms</a> and <a class="test">privacy policy</a></p>
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
     </div>
 </section>

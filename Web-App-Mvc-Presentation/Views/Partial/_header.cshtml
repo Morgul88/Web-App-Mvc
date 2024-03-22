@@ -18,12 +18,7 @@
                     {
                         <a a asp-controller="Courses" asp-action="Index" class="menu-link-login">Courses</a>
                     }
-                    @if (TempData["SuccessMessage"] != null && Context.Request.Path == "/")
-                    {
-                        <a class="alert alert-success" role="alert">
-                            @TempData["SuccessMessage"]
-                        </a>
-                    }
+                    
 
                 </nav>
 
