@@ -362,6 +362,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-#Ignorera program
 
-Web-App-Mvc-Presentation/Program.cs
+#Ignorera program
+/Web-App-Mvc-Presentation/Program.cs
