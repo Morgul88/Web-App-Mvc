@@ -21,7 +21,6 @@ builder.Services.AddHttpClient();
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 builder.Services.AddDefaultIdentity<ApplicationUser>(x =>
 {
-
     x.User.RequireUniqueEmail = true;
     x.SignIn.RequireConfirmedEmail = false;
     x.Password.RequiredLength = 8;
