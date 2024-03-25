@@ -55,14 +55,29 @@
                                 <label asp-for="BasicInfo.FirstName"></label>
                                 <span asp-validation-for="BasicInfo.FirstName"></span>
                             </div>
-                            <input asp-for="BasicInfo.FirstName"/>
+                            @if(Model.BasicInfo!.IsExternalAccount)
+                            {
+                                <input asp-for="BasicInfo.FirstName" disabled/>
+                            }
+                            else
+                            {
+                                <input asp-for="BasicInfo.FirstName"  />
+                            }
+                            
                         </div>
                         <div id="form-lastname" class="input-group">
                             <div class="input-group-flex">
                                 <label asp-for="BasicInfo.LastName"></label>
                                 <span asp-validation-for="BasicInfo.LastName"></span>
                             </div>
-                            <input asp-for="BasicInfo.LastName" />
+                            @if (Model.BasicInfo!.IsExternalAccount)
+                            {
+                                <input asp-for="BasicInfo.LastName" disabled />
+                            }
+                            else
+                            {
+                                <input asp-for="BasicInfo.LastName" />
+                            }
                         </div>
 
                     </div>
@@ -72,14 +87,22 @@
                                 <label asp-for="BasicInfo.EmailAdress"></label>
                                 <span asp-validation-for="BasicInfo.EmailAdress"></span>
                             </div>
-                            <input asp-for="BasicInfo.EmailAdress" />
+                            @if (Model.BasicInfo!.IsExternalAccount)
+                            {
+                                <input asp-for="BasicInfo.EmailAdress" disabled />
+                            }
+                            else
+                            {
+                                <input asp-for="BasicInfo.EmailAdress" />
+                            }
                         </div>
                         <div id="form-lastname" class="input-group">
                             <div class="input-group-flex">
                                 <label asp-for="BasicInfo.Phone"></label>
                                 <span asp-validation-for="BasicInfo.Phone"></span>
                             </div>
-                            <input asp-for="BasicInfo.Phone" />
+                            <input asp-for="BasicInfo.Phone"  />
+                           
                         </div>
 
                     </div>

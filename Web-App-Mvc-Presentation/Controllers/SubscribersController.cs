@@ -18,6 +18,7 @@ namespace Web_App_Mvc_Presentation.Controllers
             return View(new SubscribeModel());
         }
 
+
         [HttpPost]
         [Route("/subscriber")]
         public async Task<IActionResult> Index(SubscribeModel model)
@@ -27,8 +28,9 @@ namespace Web_App_Mvc_Presentation.Controllers
             {
                 using var http = new HttpClient();
 
-                var url = $"https://localhost:7070/api/Subscribers?email={model.Email}";
-
+                var apiKey = "M2FiNzYzMzQtMWJkNi00ODRmLTg1NzQtNjlmOGFmNzE1Yzdh";
+                var url = $"https://localhost:7070/api/Subscribers?email={model.Email}&Key={apiKey}";
+                
                 var request = new HttpRequestMessage(HttpMethod.Post, url) ;
 
                 var response = await http.SendAsync(request);
@@ -36,6 +38,17 @@ namespace Web_App_Mvc_Presentation.Controllers
                 {
                     TempData["SuccessMessage"] = "You have successfully subscribed to our newsletter!";
                     return RedirectToAction("Index", "Home", new { fragment = "dont-miss-anything" });
+                }
+
+                else if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized) 
+                {
+                    ViewData["Status"] = "Unauthorized";
+                    TempData["SuccessMessage"] = "You are unauthorized. Please contact admin";
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+                {
+                    ViewData["Status"] = "Already Exist";
+                    TempData["SuccessMessage"] = "You have already subscribed to our news";
                 }
 
             }

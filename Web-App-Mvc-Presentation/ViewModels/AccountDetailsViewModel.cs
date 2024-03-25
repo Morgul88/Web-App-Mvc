@@ -18,4 +18,6 @@ public class AccountDetailsViewModel
     public DeleteAccountModel? DeleteAccount { get; set; }
 
     public SubscribeModel? Subscribe { get; set; }
+
+
 }

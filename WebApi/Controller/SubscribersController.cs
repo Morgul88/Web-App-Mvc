@@ -4,15 +4,18 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using WebApi.Filters;
 
 namespace WebApi.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class SubscribersController(DataContext context) : ControllerBase
     {
         private readonly DataContext _context = context;
 
+        [UseApiKey]
         [HttpPost]
         public async Task<IActionResult> Create(string email)
         {

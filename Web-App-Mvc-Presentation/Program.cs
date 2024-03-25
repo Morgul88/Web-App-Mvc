@@ -8,7 +8,14 @@ using Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication().AddFacebook(x =>
+{
+    x.AppId = "1059475568457602";
+    x.AppSecret = "56eb61bcbc8319afecb5a43b94cfd3c5";
+    x.Fields.Add("first_name");
+    x.Fields.Add("last_name");
 
+});
 builder.Services.AddHttpClient();
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));

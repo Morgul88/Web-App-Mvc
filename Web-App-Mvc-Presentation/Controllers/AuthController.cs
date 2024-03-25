@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Mail;
+using System.Security.Claims;
 using Web_App_Mvc_Presentation.Models;
 using Web_App_Mvc_Presentation.ViewModels;
 
@@ -92,6 +93,9 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
         ViewData["ErrorMessage"] = "Invalid email or password";
         return View(model);
     }
+
+
+
     #endregion
 
     #region Logout
@@ -250,7 +254,7 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
             EmailAdress = user.Email!,
             Phone = user.PhoneNumber,
             Biography = user.Bio,
-
+            IsExternalAccount = user.IsExternalAccount,
         };
     }
     public async Task<AdressDetailViewModel> PopulateAdressInfoAsync()
@@ -264,10 +268,10 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
             {
                 return new AdressDetailViewModel
                 {
-                    AdressLine_1 = adress.StreetName,
+                    AdressLine_1 = adress.StreetName!,
                     AdressLine_2 = adress.AddressLine_2,
-                    PostalCode = adress.PostalCode,
-                    City = adress.City,
+                    PostalCode = adress.PostalCode!,
+                    City = adress.City!,
                 };
             }
             
@@ -291,8 +295,6 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
         };
     }
     #endregion
-
-
 
     #region BasicInfo
     [HttpPost]
@@ -399,7 +401,71 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
         ViewData["ErrorMessage"] = "You have to check the box to delete..";
         return View(viewModel);
     }
-    
+
+
+    #endregion
+
+    #region Facebook
+
+    [HttpGet]
+    public IActionResult Facebook()
+    {
+        var authProps = _signInManager.ConfigureExternalAuthenticationProperties("Facebook", Url.Action("FacebookCallBack"));
+
+        return new ChallengeResult("Facebook",authProps);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> FacebookCallback()
+    {
+        var info = await _signInManager.GetExternalLoginInfoAsync();
+
+        if (info != null)
+        {
+            var userEntity = new ApplicationUser
+            {
+                FirstName = info.Principal.FindFirstValue(ClaimTypes.GivenName)!,
+                LastName = info.Principal.FindFirstValue(ClaimTypes.Surname)!,
+                Email = info.Principal.FindFirstValue(ClaimTypes.Email)!,
+                UserName = info.Principal.FindFirstValue(ClaimTypes.Email)!,
+                IsExternalAccount = true,
+            };
+
+            var user = await _userManager.FindByEmailAsync(userEntity.Email);
+            if(user == null) 
+            {
+                var result = await _userManager.CreateAsync(userEntity);
+                if(result.Succeeded)
+                    user = await _userManager.FindByEmailAsync(userEntity.Email);
+                
+            }
+
+            if(user != null) 
+            {
+                if(user.FirstName != userEntity.FirstName ||  user.LastName != userEntity.LastName || user.Email != userEntity.Email)
+                {
+                    user.FirstName = userEntity.FirstName;
+                    user.LastName = userEntity.LastName;
+                    user.Email = userEntity.Email;
+                    
+
+                    await _userManager.UpdateAsync(user);   
+                }
+
+                await _signInManager.SignInAsync(user, isPersistent: false);
+
+                if (HttpContext.User != null)
+                {
+                    return RedirectToAction ("Details", "Auth");
+                }
+            }
+            ViewData["StatusMessage"] = "Failed to login with facebook account";
+            return RedirectToAction("Login", "Auth");
+
+        }
+
+        return RedirectToAction("Index", "Home");
+    }
 
     #endregion
 }

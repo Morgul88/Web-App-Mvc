@@ -17,4 +17,6 @@ public class ApplicationUser: IdentityUser
     public string? Bio { get; set; }
 
     public AddressEntities? Address { get; set; }
+
+    public bool IsExternalAccount { get; set; } = false;
 }
