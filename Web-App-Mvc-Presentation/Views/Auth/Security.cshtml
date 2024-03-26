@@ -3,7 +3,7 @@
 
 @{
     ViewData["Title"] = "Security";
-   
+    ViewData["Title"] = $"{@Model.BasicInfo?.FirstName} {@Model.BasicInfo?.LastName}";
 
 }
 @{
@@ -15,7 +15,7 @@
         <div class="leftside">
             <div class="profile">
                 <a href="#">
-                    <img src="~/images/@Model.ProfileInfo?.ProfileImage" alt="logo" /></Link>
+                    <img src="~/images/@Model.ProfileInfo.ProfileImage" alt="logo" /></Link>
                     <h4>@Model.ProfileInfo?.FirstName</h4>
                     <p>@Model.ProfileInfo?.FirstName @Model.ProfileInfo?.LastName</p>
                 </a>

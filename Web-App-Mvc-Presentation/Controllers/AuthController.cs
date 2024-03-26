@@ -326,7 +326,7 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
         {
             User = userEntity!
         };
-
+        viewModel.ProfileInfo ??= await PopulateProfileInfoAsync();
         return View(viewModel);
 
     }

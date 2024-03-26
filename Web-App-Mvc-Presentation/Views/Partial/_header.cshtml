@@ -1,4 +1,9 @@
 ﻿@{
+    var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
+    var isDark = (themeMode == "dark") ? true : false;
+}
+
+@{
     ViewData["Title"] = "Header";
 }
 
@@ -31,7 +36,7 @@
             <div class="btn-switch">
                 <label>Light</label>
                 <label class="switch" for="switch-mode">
-                    <input type="checkbox" class="switch-mode" onclick="switchBackground()">
+                    <input type="checkbox" id="switch-mode" checked="@isDark">
                     <div class="slider round"></div>
                 </label>
                 <label>Dark</label>
