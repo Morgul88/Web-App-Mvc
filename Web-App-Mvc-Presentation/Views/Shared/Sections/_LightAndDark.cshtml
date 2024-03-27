@@ -1,5 +1,18 @@
-﻿<section id="light-and-dark">
+﻿@{
+    var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
+    var isDark = (themeMode == "dark") ? true : false;
+}
 
+
+<section id="light-and-dark">
+    <div class="btn-switch">
+        <label>Light</label>
+        <label class="switch" for="switch-mode">
+            <input type="checkbox" id="switch-mode" checked="@isDark">
+            <div class="slider round"></div>
+        </label>
+        <label>Dark</label>
+    </div>
     <div class="container">
         <div class="dark">
             <h1>Switch Between</h1>
@@ -10,7 +23,9 @@
         <div class="computer">
             <img src="images/mockup.png">
         </div>
-
+        
+        
+        
     </div>
-
+    
 </section>

@@ -4,8 +4,28 @@
 }
 
 :root.dark {
-  background-color: #000000;
+  background-color: #33354D;
+}
+:root.dark h1, :root.dark h3, :root.dark h4, :root.dark h6, :root.dark h8, :root.dark h7 {
   color: white;
+}
+:root.dark p {
+  color: white;
+}
+:root.dark a {
+  color: white;
+}
+:root.dark label {
+  color: white;
+}
+:root.dark span {
+  color: white;
+}
+:root.dark input {
+  color: white;
+}
+:root.dark a.btn-social {
+  background-color: #33354D;
 }
 
 html, body {
@@ -580,12 +600,15 @@ footer .container .social-media {
 }
 
 #features {
-  background-color: rgba(99, 101, 241, 0.0784313725);
   padding-top: 100px;
   padding-bottom: 100px;
+  background-color: rgba(99, 101, 241, 0.0784313725);
 }
 #features .container {
   text-align: center;
+}
+#features .container .box {
+  padding: 20px;
 }
 #features .container .box:hover {
   background-color: white;
@@ -914,7 +937,13 @@ footer .container .social-media {
 }
 
 #light-and-dark {
-  background: linear-gradient(to right, black 50%, white 50%);
+  background: linear-gradient(to right, #33354D 50%, white 50%);
+  position: relative;
+}
+#light-and-dark .btn-switch {
+  position: absolute;
+  left: 1200px;
+  top: 0;
 }
 #light-and-dark .container {
   display: flex;
@@ -923,7 +952,7 @@ footer .container .social-media {
   position: relative;
 }
 #light-and-dark .container .dark {
-  background-color: black;
+  background-color: #33354D;
   width: 50%;
   height: 80vh;
   position: relative;
@@ -980,7 +1009,6 @@ footer .container .social-media {
 }
 
 #download-app {
-  background-color: rgba(99, 101, 241, 0.0784313725);
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -1163,6 +1191,7 @@ footer .container .social-media {
 }
 #courses .container .box-row .box img {
   border-radius: 10px;
+  max-width: 100%;
 }
 #courses .container .box-row .box .line {
   display: Flex;

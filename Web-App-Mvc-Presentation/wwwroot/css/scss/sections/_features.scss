@@ -1,12 +1,15 @@
 #features {
-    background-color: $theme-opacity;
     padding-top: 100px;
     padding-bottom: 100px;
+    background-color: $theme-opacity;
 
     .container {
         text-align: center;
 
+
         .box {
+            padding: 20px;
+            
         }
 
         .box:hover {

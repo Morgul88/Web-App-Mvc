@@ -1,6 +1,13 @@
 
 #light-and-dark {
-    background: linear-gradient(to right, black 50%, white 50%);
+    background: linear-gradient(to right, #33354D 50%, white 50%);
+    position: relative;
+
+    .btn-switch {
+        position: absolute;
+        left: 1200px;
+        top: 0;
+    }
 
     .container {
         display: flex;
@@ -9,7 +16,7 @@
         position: relative;
 
         .dark {
-            background-color: black;
+            background-color: #33354D;
             width: 50%;
             height: 80vh;
             position: relative;

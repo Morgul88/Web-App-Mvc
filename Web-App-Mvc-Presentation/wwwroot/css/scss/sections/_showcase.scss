@@ -1,6 +1,6 @@
 #showcase {
     position: relative;
-
+    
 
     .container {
         display: flex;
@@ -39,6 +39,8 @@
             }
         }
 
+        
+
         .background-image {
             transition: 1s;
             position: absolute;
@@ -46,7 +48,6 @@
             bottom: 0;
             left: 660px;
             right: 0;
-
             /*:hover {
                 transition: 1s;
                 position: absolute;
