@@ -92,6 +92,13 @@
 
                 .first-group {
                     display: flex;
+
+                    .input-group{
+                        margin-right:15px;
+                        input{
+                            height:25px;
+                        }
+                    }
                 }
 
 
@@ -116,6 +123,14 @@
 
                         .cancel {
                             padding-right: 20px;
+                            button{
+                                height:44px;
+                            }
+                        }
+                        .save{
+                            button{
+                                height:44px;
+                            }
                         }
                     }
 

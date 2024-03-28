@@ -5,7 +5,7 @@ using Web_App_Mvc_Presentation.ViewModels;
 
 namespace Web_App_Mvc_Presentation.Controllers;
 
-[Authorize]
+
 public class CoursesController(HttpClient httpClient) : Controller
 {
 

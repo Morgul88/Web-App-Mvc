@@ -1,10 +1,49 @@
 ﻿@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
-:root {
-  background-color: white;
-}
-
 :root.dark {
-  background-color: #33354D;
+  background-color: #33354D !important;
+}
+:root.dark #features .container .box1 {
+  border-right: white;
+  border-bottom: white;
+  border-left: white;
+  border-top: white;
+}
+:root.dark #features .container .box2 {
+  border-right: rgba(99, 101, 241, 0.0784313725);
+  border-bottom: rgba(99, 101, 241, 0.0784313725);
+  border-left: rgba(99, 101, 241, 0.0784313725);
+  border-top: rgba(99, 101, 241, 0.0784313725);
+}
+:root.dark #features .container .box:hover {
+  background-color: rgba(99, 101, 241, 0.0784313725);
+  border-radius: 10px;
+}
+:root.dark #features .container .box {
+  border-color: rgba(99, 101, 241, 0.0784313725);
+}
+:root.dark #features .container .box3 {
+  border-right: black;
+  border-bottom: black;
+  border-left: black;
+  border-top: black;
+}
+:root.dark #features .container .box4 {
+  border-right: black;
+  border-bottom: black;
+  border-left: black;
+  border-top: black;
+}
+:root.dark #features .container .box3 {
+  border-right: black;
+  border-bottom: black;
+  border-left: black;
+  border-top: black;
+}
+:root.dark #features .container .box5 {
+  border-right: black;
+  border-bottom: black;
+  border-left: black;
+  border-top: black;
 }
 :root.dark h1, :root.dark h3, :root.dark h4, :root.dark h6, :root.dark h8, :root.dark h7 {
   color: white;
@@ -310,6 +349,7 @@ a:hover {
   background: #6366F1;
   color: #FFFFFF;
   border: none;
+  height: 24px;
 }
 .btn-theme:hover {
   text-decoration: none;
@@ -332,6 +372,7 @@ a:hover {
   padding-top: 10px;
   padding-bottom: 13px;
   width: 100%;
+  height: 64px;
 }
 .btn-theme-s:hover {
   box-shadow: 0px 8px 18px -8px rgba(19, 16, 34, 0.15);
@@ -587,7 +628,7 @@ footer .container .social-media {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 660px;
+  left: 500px;
   right: 0;
   /*:hover {
       transition: 1s;
@@ -659,6 +700,12 @@ footer .container .social-media {
   width: 100%;
   padding: 100px;
 }
+#signup .container form h1 {
+  margin-bottom: 0;
+}
+#signup .container form p {
+  margin-top: 0;
+}
 #signup .container form .input-validation-error {
   color: red;
   border-color: red;
@@ -687,6 +734,8 @@ footer .container .social-media {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
+  padding-left: 0;
 }
 #signup .container form .content .input-group .input-group-flex {
   display: flex;
@@ -701,7 +750,8 @@ footer .container .social-media {
 #signup .container form .content input {
   border-radius: 10px;
   padding: 10px;
-  border: 1px solid rgb(207, 207, 207);
+  border: 1px solid rgb(227, 227, 227);
+  height: 35px;
 }
 #signup .container form .content input:focus {
   outline: none;
@@ -736,6 +786,12 @@ footer .container .social-media {
 }
 #signin .container form .sign-in-here:hover {
   cursor: pointer;
+}
+#signin .container form h1 {
+  margin-bottom: 0;
+}
+#signin .container form p {
+  margin-top: 0;
 }
 #signin .container form .error-message {
   color: red;
@@ -792,7 +848,8 @@ footer .container .social-media {
   border-bottom: 1px solid rgb(214, 214, 214);
 }
 #signin .container form .content .input-group {
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -804,7 +861,8 @@ footer .container .social-media {
 #signin .container form .content input {
   border-radius: 10px;
   padding: 10px;
-  border: 1px solid rgb(207, 207, 207);
+  border: 1px solid rgb(227, 227, 227);
+  height: 35px;
 }
 #signin .container form .content label {
   padding-bottom: 10px;
@@ -891,6 +949,12 @@ footer .container .social-media {
 #account-detail .container .right-side form .first-group {
   display: flex;
 }
+#account-detail .container .right-side form .first-group .input-group {
+  margin-right: 15px;
+}
+#account-detail .container .right-side form .first-group .input-group input {
+  height: 25px;
+}
 #account-detail .container .right-side form .content .btn-submit {
   display: flex;
   justify-content: center;
@@ -905,6 +969,12 @@ footer .container .social-media {
 }
 #account-detail .container .right-side form .content .cancel-save .cancel {
   padding-right: 20px;
+}
+#account-detail .container .right-side form .content .cancel-save .cancel button {
+  height: 44px;
+}
+#account-detail .container .right-side form .content .cancel-save .save button {
+  height: 44px;
 }
 #account-detail .container .right-side form .content .input-group {
   padding: 10px;
@@ -1128,10 +1198,14 @@ footer .container .social-media {
   background-color: #007bff;
 }
 #dont-miss-anything .container .sub {
-  margin-top: 30px;
+  margin-top: 0px;
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
+  align-items: center;
+}
+#dont-miss-anything .container .sub button {
+  height: 34px;
 }
 #dont-miss-anything .container .sub input {
   border-radius: 10px;

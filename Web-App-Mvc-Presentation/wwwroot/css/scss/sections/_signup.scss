@@ -12,6 +12,14 @@
             width: 100%;
             padding: 100px;
 
+            h1 {
+                margin-bottom: 0;
+            }
+
+            p {
+                margin-top: 0;
+            }
+
             .input-validation-error {
                 color: red;
                 border-color: red;
@@ -31,8 +39,10 @@
                 display: flex;
             }
 
+
+
             .content {
-                
+
                 .btn-submit {
                     display: flex;
                     justify-content: center;
@@ -49,10 +59,11 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
-
+                    width: 100%;
+                    padding-left:0;
                     .input-group-flex {
                         display: flex;
-                        justify-content: space-between
+                        justify-content: space-between;
                     }
 
                     .input-valdation-error {
@@ -67,7 +78,8 @@
                 input {
                     border-radius: 10px;
                     padding: 10px;
-                    border: 1px solid rgb(207, 207, 207);
+                    border: 1px solid rgb(227, 227, 227);
+                    height: 35px;
                 }
 
                 input:focus {

@@ -47,7 +47,10 @@
         </div>
         <form class="sub" asp-action="Index" asp-controller="Subscribers" method="post">
             <input type="email" asp-for="Email">
-            <button type="submit" class="btn-theme">Subscribe*</button>
+            <div>
+                <button type="submit" class="btn-theme">Subscribe*</button>
+            </div>
+            
         </form>
         <p>* Yes, I agree yo the <a class="test">terms</a> and <a class="test">privacy policy</a></p>
         @if (TempData["SuccessMessage"] != null)

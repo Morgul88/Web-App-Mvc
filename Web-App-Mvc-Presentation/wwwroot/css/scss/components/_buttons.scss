@@ -9,17 +9,18 @@
     gap: 12px;
 }
 
-.btn-theme { 
+.btn-theme {
     @include button;
     background: $theme;
     color: $white;
     border: none;
+    height: 24px;
 
     &:hover {
         text-decoration: none;
         background: $gray-700;
         color: $white;
-    } 
+    }
 }
 
 .btn-theme-s {
@@ -29,14 +30,15 @@
     color: $white;
     padding-top: 10px;
     padding-bottom: 13px;
-    width:100%;
+    width: 100%;
+    height: 64px;
 
     &:hover {
         @include theme-secondary-shadow;
         text-decoration: none;
         background: $gray-700;
         color: $white;
-    } 
+    }
 }
 
 .btn-gray { 

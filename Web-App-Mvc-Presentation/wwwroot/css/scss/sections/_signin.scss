@@ -20,7 +20,12 @@
             .sign-in-here:hover {
                 cursor: pointer;
             }
-
+            h1{
+                margin-bottom:0;
+            }
+            p{
+                margin-top:0;
+            }
             .error-message {
                 color: red;
                 text-align:center;
@@ -90,7 +95,8 @@
                 }
 
                 .input-group {
-                    padding: 10px;
+                    padding-top:10px;
+                    padding-bottom:10px;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -104,7 +110,8 @@
                 input {
                     border-radius: 10px;
                     padding: 10px;
-                    border: 1px solid rgb(207, 207, 207);
+                    border: 1px solid rgb(227, 227, 227);
+                    height:35px;
                 }
 
                 label {

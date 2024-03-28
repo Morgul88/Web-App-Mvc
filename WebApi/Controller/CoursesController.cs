@@ -4,11 +4,13 @@ using Infrastructure.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebApi.Filters;
 
 namespace WebApi.Controller;
 
 [Route("api/[controller]")]
 [ApiController]
+[UseApiKey]
 public class CoursesController(DataContext context) : ControllerBase
 {
     private readonly DataContext _context = context;
