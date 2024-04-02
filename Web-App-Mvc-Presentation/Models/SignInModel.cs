@@ -2,7 +2,7 @@
 
 namespace Web_App_Mvc_Presentation.Models;
 
-public class LoginModel
+public class SignInModel
 {
     [Required(ErrorMessage = "A Email is required")]
     [Display(Name = "Email", Prompt ="Your email adress")]

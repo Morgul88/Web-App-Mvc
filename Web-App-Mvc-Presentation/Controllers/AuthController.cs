@@ -6,19 +6,24 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Newtonsoft.Json;
 using System.Net.Mail;
 using System.Security.Claims;
+using System.Text;
 using Web_App_Mvc_Presentation.Models;
 using Web_App_Mvc_Presentation.ViewModels;
 
 namespace Web_App_Mvc_Presentation.Controllers;
 
 
-public class AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, AdressService adressService) : Controller
+public class AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, AdressService adressService, HttpClient client, IConfiguration configuration) : Controller
 {
     private readonly UserManager<ApplicationUser> _userManager = userManager;
     private readonly SignInManager<ApplicationUser> _signInManager = signInManager;
     private readonly AdressService _adressService = adressService;
+    private readonly HttpClient _client = client;
+    private readonly IConfiguration _configuration = configuration;
 
     #region Register/CreateUser
     [HttpGet]
@@ -77,21 +82,40 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
 
     [HttpPost]
     [Route("/login")]
-    public async Task<IActionResult> Login(LoginModel model)
+    public async Task<IActionResult> Login(SignInModel form)
     {
         if (ModelState.IsValid)
         {
 
 
-            var signInResult = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            var signInResult = await _signInManager.PasswordSignInAsync(form.Email, form.Password, false, false);
             if (signInResult.Succeeded)
             {
+                
+                var content = new StringContent(JsonConvert.SerializeObject(form), Encoding.UTF8, "application/json" );
+
+                var response = await _client.PostAsync($"https://localhost:7070/api/Auth/token?key={_configuration["ApiKey:Secret"]}", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var token = await response.Content.ReadAsStringAsync();
+                    var cookieOptions = new CookieOptions()
+                    {
+                        HttpOnly = true,
+                        Secure = true,
+                        Expires = DateTime.Now.AddDays(1)
+                    };
+
+                    Response.Cookies.Append("AccessToken", token, cookieOptions);
+                }
+
+                
+
                 return RedirectToAction("Index", "Home");
             }
         }
 
         ViewData["ErrorMessage"] = "Invalid email or password";
-        return View(model);
+        return View(form);
     }
 
 
@@ -106,7 +130,7 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
         await _signInManager.SignOutAsync();
         TempData["SuccessMessage"] = "You have logged out";
         return RedirectToAction("Index", "Home");
-        
+
     }
     #endregion
 
@@ -196,7 +220,7 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
                             PostalCode = viewModel.AdressInfo.PostalCode
                         };
                         var result = await _adressService.CreateAdressAsync(adress);
-                        if(!result)
+                        if (!result)
                         {
                             ModelState.AddModelError("IncorrectValues", "Something went wrong! unable to save data.");
                             ViewData["ErrorMessage"] = "Something went wrong! Unable to save data.";
@@ -206,9 +230,9 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
                             ViewData["SuccessMessage"] = "Data saved successfully";
                         }
                     }
-                    
-                    
-                    
+
+
+
                 }
             }
 
@@ -259,12 +283,12 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
     }
     public async Task<AdressDetailViewModel> PopulateAdressInfoAsync()
     {
-        
+
         var user = await _userManager.GetUserAsync(User);
-        if(user != null)
+        if (user != null)
         {
             var adress = await _adressService.GetAddressAsync(user.Id);
-            if(adress != null) 
+            if (adress != null)
             {
                 return new AdressDetailViewModel
                 {
@@ -274,7 +298,7 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
                     City = adress.City!,
                 };
             }
-            
+
         }
 
         return new AdressDetailViewModel();
@@ -386,7 +410,7 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
                 if (deleteResult.Succeeded)
                 {
                     TempData["SuccessMessage"] = "Account was removed, you will be logged out soon...";
-                    
+
                     await Task.Delay(5000);
                     return RedirectToAction("Logout", "Auth");
 
@@ -395,7 +419,7 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
                 ViewData["ErrorMessage"] = "Something went wrong";
                 return View(viewModel);
             }
-            
+
         }
 
         ViewData["ErrorMessage"] = "You have to check the box to delete..";
@@ -412,7 +436,7 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
     {
         var authProps = _signInManager.ConfigureExternalAuthenticationProperties("Facebook", Url.Action("FacebookCallBack"));
 
-        return new ChallengeResult("Facebook",authProps);
+        return new ChallengeResult("Facebook", authProps);
     }
 
     [HttpGet]
@@ -432,31 +456,31 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
             };
 
             var user = await _userManager.FindByEmailAsync(userEntity.Email);
-            if(user == null) 
+            if (user == null)
             {
                 var result = await _userManager.CreateAsync(userEntity);
-                if(result.Succeeded)
+                if (result.Succeeded)
                     user = await _userManager.FindByEmailAsync(userEntity.Email);
-                
+
             }
 
-            if(user != null) 
+            if (user != null)
             {
-                if(user.FirstName != userEntity.FirstName ||  user.LastName != userEntity.LastName || user.Email != userEntity.Email)
+                if (user.FirstName != userEntity.FirstName || user.LastName != userEntity.LastName || user.Email != userEntity.Email)
                 {
                     user.FirstName = userEntity.FirstName;
                     user.LastName = userEntity.LastName;
                     user.Email = userEntity.Email;
-                    
 
-                    await _userManager.UpdateAsync(user);   
+
+                    await _userManager.UpdateAsync(user);
                 }
 
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
                 if (HttpContext.User != null)
                 {
-                    return RedirectToAction ("Details", "Auth");
+                    return RedirectToAction("Details", "Auth");
                 }
             }
             ViewData["StatusMessage"] = "Failed to login with facebook account";

@@ -628,7 +628,7 @@ footer .container .social-media {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 500px;
+  left: 650px;
   right: 0;
   /*:hover {
       transition: 1s;
@@ -1330,6 +1330,7 @@ footer .container .social-media {
 }
 #single-section .map img {
   width: 100%;
+  height: 800px;
 }
 #single-section .map .container .info {
   padding: 30px;

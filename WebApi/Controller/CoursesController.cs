@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Context;
 using Infrastructure.Dtos;
 using Infrastructure.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace WebApi.Controller;
 [Route("api/[controller]")]
 [ApiController]
 [UseApiKey]
+[Authorize]
 public class CoursesController(DataContext context) : ControllerBase
 {
     private readonly DataContext _context = context;

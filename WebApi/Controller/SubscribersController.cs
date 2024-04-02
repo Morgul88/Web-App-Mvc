@@ -10,12 +10,12 @@ namespace WebApi.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+    [UseApiKey]
+
     public class SubscribersController(DataContext context) : ControllerBase
     {
         private readonly DataContext _context = context;
 
-        [UseApiKey]
         [HttpPost]
         public async Task<IActionResult> Create(string email)
         {
