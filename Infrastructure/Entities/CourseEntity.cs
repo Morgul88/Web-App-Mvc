@@ -27,4 +27,6 @@ public class CourseEntity
     public decimal LikesInProcent { get; set; }
 
     public decimal LikesInNumber { get; set; }
+
+    public string? Category { get; set; }
 }

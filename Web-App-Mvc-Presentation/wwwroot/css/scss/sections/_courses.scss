@@ -27,21 +27,31 @@
             margin-top: 20px;
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 30px;
+
 
             .box-link {
                 flex: 0 0 calc(33.33% - 20px);
-                
+
 
                 :hover {
                     background-color: $theme-opacity;
-                    border-radius: 10px;
                 }
             }
 
             .box {
                 position: relative;
                 z-index: 0;
+                box-shadow: 10px 4px 8px rgba(1, 0, 0, 0.3);
+                padding: 0px;
+                border-radius: 10px;
+
+                .content-mat {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+
+
 
                 .marks {
                     position: absolute;
@@ -59,7 +69,7 @@
 
                 img {
                     border-radius: 10px;
-                    max-width:100%;
+                    max-width: 100%;
                 }
 
                 .line {

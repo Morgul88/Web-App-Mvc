@@ -6,23 +6,25 @@ using Web_App_Mvc_Presentation.ViewModels;
 
 namespace Web_App_Mvc_Presentation.Controllers;
 
-[Authorize]
+
 public class CoursesController(HttpClient httpClient, IConfiguration configuration) : Controller
 {
 
     private readonly HttpClient _httpClient = httpClient;
     private readonly IConfiguration _configuration = configuration;
+    
+
 
     [HttpGet]
     [Route("/Courses")]
-    public async Task<IActionResult> CourseView()
+    public async Task<IActionResult> CourseView(string category = "")
     {
         if (HttpContext.Request.Cookies.TryGetValue("Accesstoken", out var token))
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             CoursesInfoViewModel viewModel = new CoursesInfoViewModel();
 
-            var response = await _httpClient.GetAsync($"https://localhost:7070/api/Courses?key={_configuration["ApiKey:Secret"]}");
+            var response = await _httpClient.GetAsync($"https://localhost:7070/api/Courses?key={_configuration["ApiKey:Secret"]}&category={category}");
 
             if (response.IsSuccessStatusCode) 
             { 

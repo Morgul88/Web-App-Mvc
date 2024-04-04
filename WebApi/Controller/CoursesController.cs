@@ -8,15 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using WebApi.Filters;
 
 namespace WebApi.Controller;
-
+[UseApiKey]
 [Route("api/[controller]")]
 [ApiController]
-[UseApiKey]
-[Authorize]
 public class CoursesController(DataContext context) : ControllerBase
 {
     private readonly DataContext _context = context;
-
+    
     [HttpPost]
     public async Task<IActionResult> Create(CourseDto dto)
     {
@@ -35,6 +33,7 @@ public class CoursesController(DataContext context) : ControllerBase
                     LikesInProcent = dto.LikesInProcent,
                     Hours = dto.Hours,
                     ImageName = dto.ImageName,
+                    Category = dto.Category,
 
                 };
                 _context.Courses.Add(corseEntity);
@@ -47,14 +46,22 @@ public class CoursesController(DataContext context) : ControllerBase
 
         return BadRequest();
     }
-
+    
+    [UseApiKey]
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll(string category = "")
     {
-        var courses = await _context.Courses.ToListAsync();
+        var query = _context.Courses.AsQueryable();
+        if(!string.IsNullOrEmpty(category) && category != "all") 
+            query = query.Where(x => x.Category == category);
+
+        query = query.OrderByDescending(o => o.Title);
+
+        var courses = await query.ToListAsync();
         return Ok(courses);
     }
 
+    [UseApiKey]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetOne(string id)
     {

@@ -19,16 +19,31 @@
 
             <h1>Courses</h1>
             <div class="search-form">
+                
                 <div>
-                    <details>
-                        <summary>All category</summary>
-                        <input type="text">
-                    </details>
-                </div>
-                <div>
-                    <form action="/search" method="get">
-                        <input type="text" name="query" placeholder="Sök här...">
-                        <i class="fa-regular fa-magnifying-glass"></i>
+                    
+                    <form>
+                        <div class="select">
+                            <div class="selected">All Categories</div>
+                            <div class="select-options">
+                                <div class="option" data-value="all">All Categories</div>
+                                @if(Model != null)
+                                {
+                                    foreach (var category in Model)
+                                    {
+
+                                        <div class="option" data-value="@category.Category">@category.Category</div>
+                                    }
+                                }
+                               
+                                
+                            </div>
+                        </div>
+
+                        <div class="input-search-group">
+                            <input id="searchQuery" name="searchQuery" placeholder="Search courses"/>
+                            <i class="fa-regular fa-magnifying-glass"></i>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -46,25 +61,32 @@
                 @foreach (var item in Model)
                 {
 
-                    <a class="box-link" asp-action="OneCourseView" asp-controller="Courses" asp-route-id="@item.Id">
+                    <div class="box-link" onclick="location.href='@Url.Action("OneCourseView","Courses", new { id = item.Id})'">
                         <div class="box">
-                            <div class="badge">
-                                <img src="images/badge.svg" alt="">
-                            </div>
-                            <div class="marks">
+                            @if (item.IsBestSeller)
+                            {
+                                <div class="badge">
+                                    <img src="images/badge.svg" alt="">
+                                </div>
+                            }
+                            
+                            <a asp-action="Join" asp-controller="Courses" class="marks" asp-route-id="@item.Id">
                                 <img src="images/S.svg" alt="">
-                            </div>
+                            </a>
                             <img src="~/images/@item.ImageName" alt="">
-                            <h6>@item.Title</h6>
-                            <p>@item.Author</p>
-                            <p>@item.OrginalPrice</p>
-                            <div class="line">
-                                <p>@item.Hours</p>
-                                <p>@item.DiscountPrice</p>
+                            <div class="content-mat">
+                                <h6>@item.Title</h6>
+                                <p>@item.Author</p>
+                                <p>@item.OrginalPrice</p>
+                                <div class="line">
+                                    <p>@item.Hours</p>
+                                    <p>@item.DiscountPrice</p>
+                                </div>
                             </div>
+                            
 
                         </div>
-                    </a>
+                    </div>
 
                 };
             </div>

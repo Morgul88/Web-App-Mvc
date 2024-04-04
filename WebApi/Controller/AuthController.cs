@@ -11,6 +11,7 @@ using WebApi.Model;
 
 namespace WebApi.Controller
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController(DataContext dataContext, IConfiguration configuration) : ControllerBase

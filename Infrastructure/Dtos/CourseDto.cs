@@ -25,4 +25,6 @@ public class CourseDto
     public decimal LikesInProcent { get; set; }
 
     public decimal LikesInNumber { get; set; }
+
+    public string? Category { get; set; }
 }
