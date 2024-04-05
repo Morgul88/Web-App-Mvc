@@ -6,7 +6,7 @@
 
 <section id="courses">
     <div class="container">
-
+        
 
         <div class="navigation">
             <i class="fa-thin fa-house"></i>
@@ -14,7 +14,24 @@
             <i class="fa-thin fa-arrow-right"></i>
             <a href="courses.html">Courses</a>
         </div>
-
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert-success">
+                @TempData["Message"]
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        @if (TempData["ErrorMessage2"] != null)
+        {
+            <div class="alert-warning">
+                @TempData["ErrorMessage2"]
+            </div>
+        }
         <div class="links">
 
             <h1>Courses</h1>
@@ -70,9 +87,12 @@
                                 </div>
                             }
                             
-                            <a asp-action="Join" asp-controller="Courses" class="marks" asp-route-id="@item.Id">
-                                <img src="images/S.svg" alt="">
-                            </a>
+                            
+                            <form novalidate asp-action="Join" asp-controller="Courses" method="post" asp-route-id="@item.Id">
+                                <button type="submit" class="marks">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </button>
+                            </form>
                             <img src="~/images/@item.ImageName" alt="">
                             <div class="content-mat">
                                 <h6>@item.Title</h6>

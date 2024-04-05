@@ -1,0 +1,89 @@
+﻿@using Infrastructure.Entities
+@model SavedCoursesListViewModel
+
+<section id="courses">
+    <div class="container">
+
+
+        <div class="navigation">
+            <i class="fa-thin fa-house"></i>
+            <a href="home.html">Home</a>
+            <i class="fa-thin fa-arrow-right"></i>
+            <a href="courses.html">Courses</a>
+        </div>
+
+
+
+
+        <div class="box-row">
+            @foreach (var item in Model.SavedCoursesList!)
+            {
+                
+                <div class="box-link">
+                    <div class="box">
+
+                        <div class="image-to-course">
+                            
+                            <img src="~/images/@item.ImageName" alt="">
+                            <a asp-action="DeleteCourse" asp-controller="Courses" asp-route-id="@item.Id">
+                                <i class="fa-solid fa-x"></i>
+                                <span>Remove</span>
+                            </a>
+                            
+                            
+                            
+                        </div>
+                        
+                        <div class="content-mat">
+                            <h6>@item.Title</h6>
+                            <p>@item.Author</p>
+                            <p>@item.OrginalPrice</p>
+                            <div class="line">
+                                <p>@item.Hours</p>
+                                <p>@item.DiscountPrice</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            }
+        </div>
+
+
+
+
+        <div class="side-selection">
+            <i class="fa-thin fa-arrow-left"></i>
+
+            <a class="test" href="">1</a>
+            <a class="test" href="">2</a>
+            <a class="test" href="">3</a>
+            <a class="test" href="">4</a>
+
+            <i class="fa-thin fa-arrow-right"></i>
+        </div>
+
+        <div class="next-level">
+
+            <div class="content">
+
+                <h5>Ready to get started?</h5>
+                <h1>Take Your Skills to the Next Level</h1>
+                <a class="btn-theme-s" href="#">Work with us</a>
+
+            </div>
+            <div class="background-image">
+                <img class="background-image" src="~/images/illustration.svg" alt="">
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+</section>

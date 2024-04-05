@@ -1,8 +1,4 @@
-﻿//const switchBackground = () => {
-//    var wrapper = document.getElementById("second-wrapper");
-//    wrapper.classList.toggle("dark-background");
-
-//}
+﻿
 
 document.addEventListener('DOMContentLoaded', function() {
     let sw = document.querySelector('#switch-mode')
@@ -20,20 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
             })
     })
 })
-function selectElement() {
-    let element = document.querySelector('.select');
-    console.log(element); // Loggar det valda elementet till konsolen
-    // Gör något med det valda elementet här
-    console.log("1")
-}
-
-// Anropa funktionen när dokumentet har laddats
-document.addEventListener('DOMContentLoaded', function () {
-    selectElement();
-});
 
 document.addEventListener('DOMContentLoaded', function () {
     select()
+    searchQuery()
 })
 
 function select() {
@@ -42,40 +28,50 @@ function select() {
         let selected = select.querySelector('.selected');
         let selectOption = select.querySelector('.select-options'); 
 
-        console.log("Select element:", select);
-        console.log("Selected element:", selected);
-        console.log("Select options element:", selectOption);
+        
 
         selected.addEventListener('click', function () {
             selectOption.style.display = (selectOption.style.display == 'block') ? 'none' : 'block';
         });
 
         let options = selectOption.querySelectorAll('.option'); 
-        console.log(options)
+        
         options.forEach(function (option) {
-            console.log("Adding click listener to option:", option);
+            
             option.addEventListener('click', function () {
-                console.log("3")
+                
                 selected.innerHTML = this.textContent;
                 selectOption.style.display = 'none';
                 let category = this.getAttribute('data-value')
                 selected.setAttribute('data-value',category)
                 updateCourseByFilter();
-                console.log("2")
+                
             })
-            console.log("5")
+            
         })
-        console.log("5")
+        
     } catch (error) {
         console.log(error);
     }
 }
+function searchQuery() {
+    try {
+        document.querySelector('#searchQuery').addEventListener('keyup', function () {
+            
+            updateCourseByFilter()
+        })
+    } catch {
 
+    }
+}
 function updateCourseByFilter() {
     console.log("1")
     const category = document.querySelector('.select .selected').getAttribute('data-value') || 'all'
+    console.log(category)
+    const searchQuery = document.querySelector('#searchQuery').value
+    console.log(searchQuery)
     console.log("Category value:", category);
-    const url = `/courses?category=${encodeURIComponent(category)}`
+    const url = `/courses?category=${encodeURIComponent(category)}&searchQuery=${encodeURIComponent(searchQuery)}`
     console.log(url)
     fetch(url) 
         .then(res => res.text())

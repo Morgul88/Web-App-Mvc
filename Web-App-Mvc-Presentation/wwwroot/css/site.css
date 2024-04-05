@@ -75,6 +75,10 @@ html, body {
   font-size: 16px;
 }
 
+.alert alert-success {
+  background-color: green;
+}
+
 .fixed-bottom {
   position: fixed;
   bottom: 0;
@@ -1215,6 +1219,30 @@ footer .container .social-media {
   padding: 10px;
 }
 
+#courses .container .alert-success {
+  text-align: center;
+  background-color: lightgreen;
+  padding: 5px;
+  border-radius: 30px;
+  margin: 10px;
+  border: 1px solid gray;
+}
+#courses .container .alert-danger {
+  text-align: center;
+  background-color: lightcoral;
+  padding: 5px;
+  border-radius: 30px;
+  margin: 10px;
+  border: 1px solid gray;
+}
+#courses .container .alert-warning {
+  text-align: center;
+  background-color: lightyellow;
+  padding: 5px;
+  border-radius: 30px;
+  margin: 10px;
+  border: 1px solid gray;
+}
 #courses .container .side-selection {
   display: Flex;
   justify-content: center;
@@ -1239,6 +1267,7 @@ footer .container .social-media {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  position: relative;
 }
 #courses .container .box-row .box-link {
   flex: 0 0 calc(33.33% - 20px);
@@ -1253,15 +1282,45 @@ footer .container .social-media {
   padding: 0px;
   border-radius: 10px;
 }
+#courses .container .box-row .box .image-to-course {
+  position: relative;
+  z-index: -1;
+}
+#courses .container .box-row .box .image-to-course img {
+  z-index: 0;
+}
+#courses .container .box-row .box .image-to-course a {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  color: red;
+}
+#courses .container .box-row .box .image-to-course i {
+  color: red;
+}
 #courses .container .box-row .box .content-mat {
   padding-left: 20px;
   padding-right: 20px;
 }
 #courses .container .box-row .box .marks {
+  background-color: transparent;
+  border: none;
   position: absolute;
   right: 15px;
   top: 15px;
   z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+#courses .container .box-row .box .marks i:hover {
+  color: green;
+}
+#courses .container .box-row .box .marks:hover {
+  background-color: lightgreen;
+  cursor: pointer;
 }
 #courses .container .box-row .box .badge {
   position: absolute;
@@ -1305,6 +1364,54 @@ footer .container .social-media {
 }
 #courses .container .search-form form {
   padding: 10px;
+  display: flex;
+}
+#courses .container .search-form form .input-search-group {
+  padding-left: 20px;
+  position: relative;
+}
+#courses .container .search-form form .input-search-group input {
+  min-width: 300px;
+  position: relative;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  height: 27px;
+}
+#courses .container .search-form form .input-search-group i {
+  position: absolute;
+  top: 5px;
+  right: 1rem;
+}
+#courses .container .search-form form .select {
+  min-width: 300px;
+  position: relative;
+}
+#courses .container .search-form form .select .selected {
+  font-weight: 400;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  cursor: pointer;
+}
+#courses .container .search-form form .select-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid lightgray;
+  z-index: 10;
+}
+#courses .container .search-form form .select-options .options {
+  padding: 10px;
+  cursor: pointer;
+}
+#courses .container .search-form form .select-options .option:hover {
+  background-color: gray;
 }
 #courses .container .next-level {
   background-color: rgba(99, 101, 241, 0.0784313725);

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApi.Filters;
 
 namespace WebApi.Controller;
-[UseApiKey]
+
 [Route("api/[controller]")]
 [ApiController]
 public class CoursesController(DataContext context) : ControllerBase
@@ -49,11 +49,20 @@ public class CoursesController(DataContext context) : ControllerBase
     
     [UseApiKey]
     [HttpGet]
-    public async Task<IActionResult> GetAll(string category = "")
+    public async Task<IActionResult> GetAll(string category = "", string searchQuery = "")
     {
         var query = _context.Courses.AsQueryable();
-        if(!string.IsNullOrEmpty(category) && category != "all") 
+        if(!string.IsNullOrEmpty(category) && category != "all")
+        {
             query = query.Where(x => x.Category == category);
+        }
+
+
+        if (!string.IsNullOrWhiteSpace(searchQuery))
+        {
+            query = query.Where(x => x.Title.Contains(searchQuery) || x.Author!.Contains(searchQuery));
+        }
+            
 
         query = query.OrderByDescending(o => o.Title);
 

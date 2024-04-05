@@ -4,9 +4,11 @@ html, body {
     
     
 }
-
-.fixed-bottom{
-    position:fixed;
+.alert alert-success{
+    background-color:green;
+}
+.fixed-bottom {
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
