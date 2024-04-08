@@ -1,4 +1,4 @@
-﻿
+﻿@model ContactModel
 @{
 
     ViewData["Title"] = "Contacts";
@@ -42,45 +42,56 @@
             </div>
 
             <div class="form">
-                <form method="post" asp-controller="Contact" asp-action="contacts">
-                    <h1>Get in Contact With Us</h1>
-                    <div class="message-sent">
-                        <span class="hidden">Hidden</span>
-                        
-                    </div>
+                <form method="post" asp-controller="Home" asp-action="contacts">
+                    <h3>Get in Contact With Us</h3>
+                    @if (!string.IsNullOrEmpty(ViewData["SuccessMessage"] as string))
+                    {
+                        <div class="alert-success" role="alert">
+                            @ViewData["SuccessMessage"]
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
+                    {
+                        <div class="alert-danger" role="alert">
+                            @ViewData["ErrorMessage"]
+                        </div>
+                    }
                     <div class="content">
 
                         <div id="form-firstname" class="input-group">
                             <div class="input-group-flex">
-                                <label>Full name</label>
-                                <span></span>
+                                <label asp-for="@Model.FullName">First name</label>
+                                <span asp-validation-for="@Model.FullName"></span>
                             </div>
 
-                            <input/>
+                            <input asp-for="@Model.FullName" />
 
                         </div>
 
                         <div id="form-email" class="input-group">
                             <div class="input-group-flex">
-                                <label>Email</label>
-                                <span></span>
+                                <label asp-for="@Model.EmailAdress">Email Adress</label>
+                                <span asp-validation-for="@Model.EmailAdress"></span>
                             </div>
-                            <input/>
+
+                            <input asp-for="@Model.EmailAdress" />
                         </div>
 
                         <div id="form-Service" class="input-group">
                             <div class="input-group-flex">
-                                <label>Service (optional)</label>
-                                <span></span>
+                                <label asp-for="@Model.Service">Service</label>
+                                <span asp-validation-for="@Model.Service"></span>
                             </div>
-                            <input/>
+
+                            <input asp-for="@Model.Service" />
                         </div>
                         <div id="form-Message" class="input-group">
                             <div class="input-group-flex">
-                                <label>Message</label>
-                                <span></span>
+                                <label asp-for="@Model.Message">Message</label>
+                                <span asp-validation-for="@Model.Message"></span>
                             </div>
-                            <textarea id="message" rows="4" cols="50"></textarea>
+                            <textarea id="message" asp-for="@Model.Message" rows="8" cols="50"></textarea>
                         </div>
 
                         <div class="btn-submit">
@@ -88,8 +99,10 @@
                         </div>
 
                     </div>
-
+                    
                 </form>
+
+               
             </div>
         </div>
 

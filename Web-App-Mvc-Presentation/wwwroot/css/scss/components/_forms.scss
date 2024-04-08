@@ -21,4 +21,31 @@ textarea{
     align-items:center;
 }
 
+.alert-success {
+    text-align: center;
+    background-color: lightgreen;
+    padding: 5px;
+    border-radius: 30px;
+    margin: 10px;
+    border: 1px solid gray;
+}
+
+.alert-danger {
+    text-align: center;
+    background-color: lightcoral;
+    padding: 5px;
+    border-radius: 30px;
+    margin: 10px;
+    border: 1px solid gray;
+}
+
+.alert-warning {
+    text-align: center;
+    background-color: lightyellow;
+    padding: 5px;
+    border-radius: 30px;
+    margin: 10px;
+    border: 1px solid gray;
+}
+
 

@@ -1,0 +1,91 @@
+﻿@model CourseViewModel
+
+<section id="admin-add-course">
+    <div class="container">
+        <div>
+            <h1>Add New Course</h1>
+        </div>
+    </div>
+    <div class="container">
+
+        
+        <form novalidate method="post" asp-controller="Admin" asp-action="CreateCourse">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input asp-for="Title" type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="imageName">Image Name:</label>
+                    <input asp-for="ImageName" type="text" id="imageName" name="imageName">
+                </div>
+                <div class="form-group">
+                    <label for="author">Author:</label>
+                    <input asp-for="Author" type="text" id="author" name="author">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="isBestSeller">Is Best Seller:</label>
+                    <input asp-for="IsBestSeller" type="checkbox" id="isBestSeller" name="isBestSeller">
+                </div>
+                <div class="form-group">
+                    <label for="hours">Hours:</label>
+                    <input asp-for="Hours" type="number" id="hours" name="hours" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="orginalPrice">Original Price:</label>
+                    <input asp-for="OrginalPrice" type="number" id="orginalPrice" name="orginalPrice" min="0">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="discountPrice">Discount Price:</label>
+                    <input asp-for="DiscountPrice" type="number" id="discountPrice" name="discountPrice" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="likesInProcent">Likes in Percent:</label>
+                    <input asp-for="LikesInProcent" type="number" id="likesInProcent" name="likesInProcent" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="likesInNumber">Likes in Number:</label>
+                    <input asp-for="LikesInNumber" type="number" id="likesInNumber" name="likesInNumber" min="0">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select asp-for="Category" id="category" name="category" required>
+                        <option value="web">Web Development</option>
+                        <option value="mobile">Mobile Development</option>
+                        <option value="design">Design</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="business">Business</option>
+                    </select>
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Add Course</button>
+            @if (ViewData["SuccessMessage"] != null)
+            {
+                <div class="alert-success">
+                    @ViewData["SuccessMessage"]
+                </div>
+            }
+            @if (ViewData["ErrorMessage"] != null)
+            {
+                <div class="alert-danger">
+                    @ViewData["ErrorMessage"]
+                </div>
+            }
+            @if (ViewData["ErrorMessage2"] != null)
+            {
+                <div class="alert-warning">
+                    @ViewData["ErrorMessage2"]
+                </div>
+            }
+        </form>
+        <a href="@Url.Action("CreateCourse", "Admin")">Skapa kurs</a>
+    </div>
+</section>
+

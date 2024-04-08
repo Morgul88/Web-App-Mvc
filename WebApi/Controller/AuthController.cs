@@ -21,7 +21,7 @@ namespace WebApi.Controller
 
 
 
-        [UseApiKey]
+        
         [HttpPost]
         [Route("token")]
         public IActionResult GetToken(SignInModel model)

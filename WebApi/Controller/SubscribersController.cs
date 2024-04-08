@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Context;
 using Infrastructure.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -10,12 +11,13 @@ namespace WebApi.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    [UseApiKey]
+    
 
     public class SubscribersController(DataContext context) : ControllerBase
     {
         private readonly DataContext _context = context;
 
+        [UseApiKey]
         [HttpPost]
         public async Task<IActionResult> Create(string email)
         {
@@ -25,7 +27,7 @@ namespace WebApi.Controller
                 {
                     try
                     {
-                        var subscriberEntity = new SubscriberEntity { Email = email };
+                        var subscriberEntity = new SubscriberEntity { Email = email, CreatedAt = DateTime.Now, };
                         _context.Subscribers.Add(subscriberEntity);
                         await _context.SaveChangesAsync();
 
@@ -43,6 +45,7 @@ namespace WebApi.Controller
             return BadRequest();
         }
 
+        [UseApiKey]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -54,7 +57,7 @@ namespace WebApi.Controller
             return NotFound();
         }
 
-
+        [UseApiKey]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOne(int id)
         {
@@ -67,6 +70,7 @@ namespace WebApi.Controller
             return NotFound();
         }
 
+        [UseApiKey]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, string email)
         {
@@ -86,6 +90,7 @@ namespace WebApi.Controller
             return NotFound();
         }
 
+        [UseApiKey]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

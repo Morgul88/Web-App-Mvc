@@ -1,0 +1,41 @@
+﻿@using Infrastructure.Entities
+@model IEnumerable<ContactEntity>
+
+<section id="admin">
+    <div class="container">
+        <div class="content-material">
+            <h1>Service </h1>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Email Address</th>
+                    <th>Service</th>
+                    <th>Message</th>
+                    <th>Created At</th>
+                    <th>Action</th>
+                </tr>
+                @foreach (var contact in Model)
+                {
+                    <tr>
+                        <td>@contact.Id</td>
+                        <td>@contact.FullName</td>
+                        <td>@contact.EmailAdress</td>
+                        <td>@contact.Service</td>
+                        <td>@contact.Message</td>
+                        <td>@contact.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                        <td><button class="btn">Delete</button></td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <h1>Create Course</h1>
+        <div class="btn-submit">
+            <a asp-action="CreateCourse" asp-controller="Admin" class="btn btn-theme-s">Create Course</a>
+            <a class="btn-theme" asp-controller="Auth" asp-action="Register"><i class="fa-regular fa-user"></i><span>Sign up</span></a>
+        </div>
+        
+
+        
+    </div>
+</section>

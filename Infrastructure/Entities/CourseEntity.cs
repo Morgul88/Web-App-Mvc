@@ -29,4 +29,6 @@ public class CourseEntity
     public decimal LikesInNumber { get; set; }
 
     public string? Category { get; set; }
+
+    public DateTime CreatedAt { get; set; }
 }

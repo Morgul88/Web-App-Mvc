@@ -48,6 +48,7 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
                     LastName = model.LastName,
                     Email = model.EmailAdress,
                     UserName = model.EmailAdress
+                    
                 };
 
                 var registerResult = await _userManager.CreateAsync(applicationUser, model.Password);

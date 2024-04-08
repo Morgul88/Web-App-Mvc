@@ -94,8 +94,10 @@ public class CoursesController(HttpClient httpClient, IConfiguration configurati
 
                 if (existingEntity == null)
                 {
+                    entity!.CreatedAt = DateTime.UtcNow;
                     _context.SavedCourses.Add(entity!);
                     await _context.SaveChangesAsync();
+                    
                     TempData["Message"] = "Kursen har sparats i dina sparade kurser.";
                 }
                 else

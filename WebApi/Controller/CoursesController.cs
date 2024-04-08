@@ -14,6 +14,7 @@ namespace WebApi.Controller;
 public class CoursesController(DataContext context) : ControllerBase
 {
     private readonly DataContext _context = context;
+
     
     [HttpPost]
     public async Task<IActionResult> Create(CourseDto dto)
@@ -34,7 +35,7 @@ public class CoursesController(DataContext context) : ControllerBase
                     Hours = dto.Hours,
                     ImageName = dto.ImageName,
                     Category = dto.Category,
-
+                    CreatedAt = DateTime.Now
                 };
                 _context.Courses.Add(corseEntity);
                 await _context.SaveChangesAsync();
@@ -46,6 +47,7 @@ public class CoursesController(DataContext context) : ControllerBase
 
         return BadRequest();
     }
+
     
     [UseApiKey]
     [HttpGet]
@@ -70,6 +72,7 @@ public class CoursesController(DataContext context) : ControllerBase
         return Ok(courses);
     }
 
+    
     [UseApiKey]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetOne(string id)
@@ -84,5 +87,53 @@ public class CoursesController(DataContext context) : ControllerBase
         {
             return NotFound();
         }
+    }
+
+    [Authorize]
+    [UseApiKey]
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(string id, CourseDto dto)
+    {
+        var course = await _context.Courses.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (course != null)
+        {
+            
+            course.Title = dto.Title;
+            course.Author = dto.Author;
+            course.IsBestSeller = dto.IsBestSeller;
+            course.DiscountPrice = dto.DiscountPrice;
+            course.OrginalPrice = dto.OrginalPrice;
+            course.LikesInNumber = dto.LikesInNumber;
+            course.LikesInProcent = dto.LikesInProcent;
+            course.Hours = dto.Hours;
+            course.ImageName = dto.ImageName;
+            course.Category = dto.Category;
+
+            _context.Courses.Update(course);
+            await _context.SaveChangesAsync();
+
+            return Ok(course);
+        }
+
+        return NotFound();
+    }
+
+    [Authorize]
+    [UseApiKey]
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(string id)
+    {
+        var course = await _context.Courses.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (course != null)
+        {
+
+            _context.Courses.Remove(course);
+            await _context.SaveChangesAsync();
+            return Ok();
+
+        }
+        return NotFound();
     }
 }

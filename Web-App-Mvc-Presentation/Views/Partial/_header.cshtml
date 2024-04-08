@@ -21,8 +21,10 @@
                     <a a asp-controller="Home" asp-action="Contacts" class="menu-link">Contact</a>
                     @if (User.Identity!.IsAuthenticated)
                     {
-                        <a a asp-controller="Courses" asp-action="Index" class="menu-link-login">Courses</a>
+                        <a a asp-controller="Courses" asp-action="Index" class="menu-link">Courses</a>
+                        <a a asp-controller="Admin" asp-action="Index" class="menu-link">Admin</a>
                     }
+
                     
 
                 </nav>

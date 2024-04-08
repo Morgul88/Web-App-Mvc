@@ -18,7 +18,7 @@ public class DataContext(DbContextOptions<DataContext> options) : IdentityDbCont
 
     public DbSet<SavedCoursesEntities> SavedCourses { get; set; }
 
-
+    public DbSet<ContactEntity> Contact { get; set; }
 
 
 }

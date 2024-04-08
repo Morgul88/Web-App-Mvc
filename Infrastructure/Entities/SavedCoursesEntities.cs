@@ -23,4 +23,6 @@ public class SavedCoursesEntities
     public decimal LikesInNumber { get; set; }
 
     public string? Category { get; set; }
+
+    public DateTime CreatedAt { get; set; }
 }
