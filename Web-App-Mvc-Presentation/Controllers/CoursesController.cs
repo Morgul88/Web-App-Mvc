@@ -2,43 +2,55 @@
 using Infrastructure.Context;
 using Infrastructure.Entities;
 using Infrastructure.Migrations;
+using Infrastructure.Models;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using Web_App_Mvc_Presentation.Models;
 using Web_App_Mvc_Presentation.ViewModels;
 
 namespace Web_App_Mvc_Presentation.Controllers;
 
 
-public class CoursesController(HttpClient httpClient, IConfiguration configuration, DataContext context) : Controller
+public class CoursesController(HttpClient httpClient, IConfiguration configuration, DataContext context, CourseService courseService, CategoryService categoryService = null) : Controller
 {
 
     private readonly HttpClient _httpClient = httpClient;
     private readonly IConfiguration _configuration = configuration;
     private readonly DataContext _context = context;
-
-
+    private readonly CourseService _courseService = courseService;
+    private readonly CategoryService _categoryService = categoryService;
     [HttpGet]
     [Route("/Courses")]
-    public async Task<IActionResult> CourseView(string category = "", string searchQuery = "")
+    public async Task<IActionResult> CourseView(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 6)
     {
         if (HttpContext.Request.Cookies.TryGetValue("Accesstoken", out var token))
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            CoursesInfoViewModel viewModel = new CoursesInfoViewModel();
 
-            var response = await _httpClient.GetAsync($"https://localhost:7070/api/Courses?key={_configuration["ApiKey:Secret"]}&category={Uri.UnescapeDataString(category)}&searchQuery={Uri.UnescapeDataString(searchQuery)}");
+            
 
-            if (response.IsSuccessStatusCode)
+            var courseResult = await _courseService.GetCoursesAsync(category,searchQuery, pageNumber, pageSize);
+
+            var viewModel = new CourseIndexViewModel
             {
-                var data = await response.Content.ReadAsStringAsync();
-                var courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(data);
+                Categories = await _categoryService.GetAllCategoriesAsync(),
+                
+                Courses = courseResult.Courses,
+                Pagination = new Pagination
+                {
+                    PageSize = pageSize,
+                    CurrentPage = pageNumber,
+                    TotalPages = courseResult.TotalPages,
+                    TotalItems = courseResult.TotalItems
+                }
 
-                return View(courses);
-            }
-
+            };
+            return View(viewModel);
 
         };
 
@@ -80,7 +92,7 @@ public class CoursesController(HttpClient httpClient, IConfiguration configurati
         if (HttpContext.Request.Cookies.TryGetValue("Accesstoken", out var token))
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-           
+
 
             var response = await _httpClient.GetAsync($"https://localhost:7070/api/Courses/{id}?key={_configuration["ApiKey:Secret"]}");
 
@@ -97,7 +109,7 @@ public class CoursesController(HttpClient httpClient, IConfiguration configurati
                     entity!.CreatedAt = DateTime.UtcNow;
                     _context.SavedCourses.Add(entity!);
                     await _context.SaveChangesAsync();
-                    
+
                     TempData["Message"] = "Kursen har sparats i dina sparade kurser.";
                 }
                 else
@@ -117,7 +129,7 @@ public class CoursesController(HttpClient httpClient, IConfiguration configurati
                 return RedirectToAction("CourseView", "Courses");
             }
 
-            
+
 
         };
 

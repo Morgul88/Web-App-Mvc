@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CourseModel>
+﻿@model CourseIndexViewModel
 @{
     ViewData["Title"] = "Courses";
 
@@ -44,12 +44,12 @@
                             <div class="selected">All Categories</div>
                             <div class="select-options">
                                 <div class="option" data-value="all">All Categories</div>
-                                @if(Model != null)
+                                @if(Model.Categories != null)
                                 {
-                                    foreach (var category in Model)
+                                    foreach (var category in Model.Categories!)
                                     {
 
-                                        <div class="option" data-value="@category.Category">@category.Category</div>
+                                        <div class="option" data-value="@category">@category</div>
                                     }
                                 }
                                
@@ -75,55 +75,61 @@
         else
         {
             <div class="box-row">
-                @foreach (var item in Model)
+                @if (Model.Courses != null)
                 {
+                    @foreach (var item in Model.Courses)
+                    {
+                        <div class="box-link" onclick="location.href='@Url.Action("OneCourseView","Courses", new { id = item.Id})'">
+                            <div class="box">
+                                @if (item.IsBestSeller)
+                                {
+                                    <div class="badge">
+                                        <img src="images/badge.svg" alt="">
+                                    </div>
+                                }
 
-                    <div class="box-link" onclick="location.href='@Url.Action("OneCourseView","Courses", new { id = item.Id})'">
-                        <div class="box">
-                            @if (item.IsBestSeller)
-                            {
-                                <div class="badge">
-                                    <img src="images/badge.svg" alt="">
-                                </div>
-                            }
-                            
-                            
-                            <form novalidate asp-action="Join" asp-controller="Courses" method="post" asp-route-id="@item.Id">
-                                <button type="submit" class="marks">
-                                    <i class="fa-regular fa-bookmark"></i>
-                                </button>
-                            </form>
-                            <img src="~/images/@item.ImageName" alt="">
-                            <div class="content-mat">
-                                <h6>@item.Title</h6>
-                                <p>@item.Author</p>
-                                <p>@item.OrginalPrice</p>
-                                <div class="line">
-                                    <p>@item.Hours</p>
-                                    <p>@item.DiscountPrice</p>
+                                <form novalidate asp-action="Join" asp-controller="Courses" method="post" asp-route-id="@item.Id">
+                                    <button type="submit" class="marks">
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    </button>
+                                </form>
+                                <img src="~/images/@item.ImageName" alt="">
+                                <div class="content-mat">
+                                    <h6>@item.Title</h6>
+                                    <p>@item.Author</p>
+                                    <p>@item.OrginalPrice</p>
+                                    <div class="line">
+                                        <p>@item.Hours</p>
+                                        <p>@item.DiscountPrice</p>
+                                    </div>
                                 </div>
                             </div>
-                            
-
                         </div>
-                    </div>
-
-                };
+                    }
+                }
             </div>
+            @if (Model.Pagination != null && Model.Pagination.TotalPages > 1)
+            {
+                <div class="pagination">
+                    @for(int i = 1; i <= Model.Pagination.TotalPages; i++)
+                    {
+                        if(i == Model.Pagination.CurrentPage)
+                        {
+                            <span class="number active">@i</span>
+                        }
+                        else
+                        {
+                            <a class="number" href="@Url.Action("CourseView", new { pageNumber = i, pageSize = Model.Pagination.PageSize })">@i</a>
+                        }
+                    }
+                </div>
+            }
+            
         }
         
         
 
-        <div class="side-selection">
-            <i class="fa-thin fa-arrow-left"></i>
-
-            <a class="test" href="">1</a>
-            <a class="test" href="">2</a>
-            <a class="test" href="">3</a>
-            <a class="test" href="">4</a>
-
-            <i class="fa-thin fa-arrow-right"></i>
-        </div>
+        
 
         <div class="next-level">
 

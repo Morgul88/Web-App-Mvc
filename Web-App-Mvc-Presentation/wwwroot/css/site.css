@@ -1483,6 +1483,29 @@ footer .container .social-media {
 #courses .container .box-row .box .line p {
   padding-right: 20px;
 }
+#courses .container .pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+#courses .container .pagination .number {
+  display: inline-block;
+  padding: 8px 12px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+#courses .container .pagination .number.active {
+  background-color: lightslategray;
+  color: #fff;
+  border: 1px solid lightslategray;
+}
+#courses .container .pagination .number:hover {
+  background-color: lightslategray;
+}
 #courses .container .navigation a {
   padding-right: 10px;
 }

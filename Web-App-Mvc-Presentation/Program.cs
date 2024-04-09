@@ -40,6 +40,8 @@ builder.Services.ConfigureApplicationCookie(x =>
 
 });
 builder.Services.AddScoped<AdressService>();
+builder.Services.AddScoped<CourseService>();
+builder.Services.AddScoped<CategoryService>();
 var app = builder.Build();
 
 app.UseHsts();

@@ -1,6 +1,8 @@
 ﻿using Infrastructure.Context;
 using Infrastructure.Dtos;
 using Infrastructure.Entities;
+using Infrastructure.Factories;
+using Infrastructure.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +17,8 @@ public class CoursesController(DataContext context) : ControllerBase
 {
     private readonly DataContext _context = context;
 
-    
+    [Authorize]
+    [UseApiKey]
     [HttpPost]
     public async Task<IActionResult> Create(CourseDto dto)
     {
@@ -49,30 +52,41 @@ public class CoursesController(DataContext context) : ControllerBase
     }
 
     
-    [UseApiKey]
+
     [HttpGet]
-    public async Task<IActionResult> GetAll(string category = "", string searchQuery = "")
+    public async Task<IActionResult> GetAll(string category ="",string searchQuery = "", int pageNumber = 1, int pageSize = 6)
     {
+        
         var query = _context.Courses.AsQueryable();
-        if(!string.IsNullOrEmpty(category) && category != "all")
+        if (!string.IsNullOrEmpty(category) && category != "all")
         {
             query = query.Where(x => x.Category == category);
         }
-
 
         if (!string.IsNullOrWhiteSpace(searchQuery))
         {
             query = query.Where(x => x.Title.Contains(searchQuery) || x.Author!.Contains(searchQuery));
         }
-            
-
         query = query.OrderByDescending(o => o.Title);
 
-        var courses = await query.ToListAsync();
-        return Ok(courses);
+        var totalItems = await query.CountAsync();
+        var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+
+        var courses = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+        var courseModel = CourseFactory.Create(courses);
+
+        var response = new CourseResult
+        {
+            Succeeded = true,
+            TotalItems = totalItems,
+            TotalPages = totalPages,
+            Courses = courseModel,
+        };
+
+        return Ok(response);
     }
 
-    
+
     [UseApiKey]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetOne(string id)
