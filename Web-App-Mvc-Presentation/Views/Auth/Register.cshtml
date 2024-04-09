@@ -55,8 +55,9 @@
                     <div class="check-box">
                         <input type="checkbox" asp-for="TermsAndConditions" />
                         <label asp-for="TermsAndConditions">I agree to the <a class="a-tag" asp-controller="About" asp-action="Terms">Terms</a> & <a class="a-tag" asp-controller="About" asp-action="Conditions">Conditions</a></label>
+                        <span asp-validation-for="TermsAndConditions"></span>
                         <div>
-                            <span asp-validation-for="TermsAndConditions"></span>
+                            
                         </div> 
 
                     </div>

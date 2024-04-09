@@ -60,7 +60,8 @@
                     flex-direction: column;
                     justify-content: center;
                     width: 100%;
-                    padding-left:0;
+                    padding-left: 0;
+
                     .input-group-flex {
                         display: flex;
                         justify-content: space-between;
@@ -80,6 +81,8 @@
                     padding: 10px;
                     border: 1px solid rgb(227, 227, 227);
                     height: 35px;
+                    font-family: manrope;
+                    align-items: center;
                 }
 
                 input:focus {
@@ -93,9 +96,24 @@
                 }
 
                 .check-box {
+                    display: flex;
+                    align-items: baseline;
+                    margin-bottom: 30px;
+
+                    input {
+                        height: 30px;
+                        width: 30px;
+                        margin: 0;
+                        align-items: end;
+                    }
+
                     label {
+                        padding-left: 10px;
+                        align-items: center;
                         font-weight: 100;
                         font-size: 20px;
+                        padding-left: 20px;
+                        padding-bottom: 0;
                     }
                 }
             }

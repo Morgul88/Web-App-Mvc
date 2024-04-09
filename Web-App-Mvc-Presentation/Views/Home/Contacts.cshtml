@@ -42,7 +42,7 @@
             </div>
 
             <div class="form">
-                <form method="post" asp-controller="Home" asp-action="contacts">
+                <form novalidate method="post" asp-controller="Home" asp-action="contacts">
                     <h3>Get in Contact With Us</h3>
                     @if (!string.IsNullOrEmpty(ViewData["SuccessMessage"] as string))
                     {

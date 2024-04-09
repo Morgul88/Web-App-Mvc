@@ -900,6 +900,8 @@ footer .container .social-media {
   padding: 10px;
   border: 1px solid rgb(227, 227, 227);
   height: 35px;
+  font-family: manrope;
+  align-items: center;
 }
 #signup .container form .content input:focus {
   outline: none;
@@ -909,9 +911,24 @@ footer .container .social-media {
   font-weight: 900;
   font-size: 20px;
 }
+#signup .container form .content .check-box {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 30px;
+}
+#signup .container form .content .check-box input {
+  height: 30px;
+  width: 30px;
+  margin: 0;
+  align-items: end;
+}
 #signup .container form .content .check-box label {
+  padding-left: 10px;
+  align-items: center;
   font-weight: 100;
   font-size: 20px;
+  padding-left: 20px;
+  padding-bottom: 0;
 }
 
 #signin .container {
@@ -958,6 +975,8 @@ footer .container .social-media {
 }
 #signin .container form .content .check input {
   align-items: center;
+  font-family: manrope;
+  height: 30px;
 }
 #signin .container form .content .check label {
   margin: 0;
@@ -1840,10 +1859,14 @@ footer .container .social-media {
   border-radius: 10px;
   padding: 10px;
   border: 1px solid rgb(207, 207, 207);
+  height: 30px;
+  font-family: manrope;
 }
 #contact .container .contact-info form .content textarea {
   border: 1px solid rgb(207, 207, 207);
   border-radius: 10px;
+  font-family: manrope;
+  color: lightgray;
 }
 #contact .container .contact-info form .content label {
   padding-bottom: 10px;

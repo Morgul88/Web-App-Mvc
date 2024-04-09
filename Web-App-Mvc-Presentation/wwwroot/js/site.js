@@ -86,3 +86,77 @@ function updateCourseByFilter() {
 
     
 }
+
+
+//här är contact javascript
+document.addEventListener('DOMContentLoaded', function () {
+    let fullNameInput = document.getElementById('FullName');
+    let emailInput = document.getElementById('EmailAdress');
+    let serviceInput = document.getElementById('Service');
+    let messageInput = document.getElementById('Message');
+
+    fullNameInput.addEventListener('keyup', function () {
+        validateFullName();
+    });
+
+    emailInput.addEventListener('keyup', function () {
+        validateEmail();
+    });
+
+    serviceInput.addEventListener('keyup', function () {
+        validateService();
+    });
+
+    messageInput.addEventListener('keyup', function () {
+        validateMessage();
+    });
+
+    function validateFullName() {
+        let fullNameValue = fullNameInput.value.trim();
+        let errorMessageElement = document.querySelector('[data-valmsg-for="FullName"]');
+        if (fullNameValue.length < 2) {
+            errorMessageElement.textContent = 'Invalid first name.';
+            errorMessageElement.classList.add('field-validation-error');
+        } else {
+            errorMessageElement.textContent = '';
+            errorMessageElement.classList.remove('field-validation-error');
+        }
+    }
+
+    function validateEmail() {
+        let emailValue = emailInput.value.trim();
+        let errorMessageElement = document.querySelector('[data-valmsg-for="EmailAdress"]');
+        let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(emailValue)) {
+            errorMessageElement.textContent = 'Invalid email address.';
+            errorMessageElement.classList.add('field-validation-error');
+        } else {
+            errorMessageElement.textContent = '';
+            errorMessageElement.classList.remove('field-validation-error');
+        }
+    }
+
+    function validateService() {
+        let serviceValue = serviceInput.value.trim();
+        let errorMessageElement = document.querySelector('[data-valmsg-for="Service"]');
+        if (serviceValue.length < 2) {
+            errorMessageElement.textContent = 'Must contain 2 letters.';
+            errorMessageElement.classList.add('field-validation-error');
+        } else {
+            errorMessageElement.textContent = '';
+            errorMessageElement.classList.remove('field-validation-error');
+        }
+    }
+
+    function validateMessage() {
+        let messageValue = messageInput.value.trim();
+        let errorMessageElement = document.querySelector('[data-valmsg-for="Message"]');
+        if (messageValue.length < 1) {
+            errorMessageElement.textContent = 'Message is required.';
+            errorMessageElement.classList.add('field-validation-error');
+        } else {
+            errorMessageElement.textContent = '';
+            errorMessageElement.classList.remove('field-validation-error');
+        }
+    }
+});

@@ -10,9 +10,11 @@
             flex-direction: column;
             width: 60%;
             padding: 100px;
-            .hidden{
-                visibility:hidden;
+
+            .hidden {
+                visibility: hidden;
             }
+
             span {
                 color: red;
             }
@@ -20,15 +22,18 @@
             .sign-in-here:hover {
                 cursor: pointer;
             }
-            h1{
-                margin-bottom:0;
+
+            h1 {
+                margin-bottom: 0;
             }
-            p{
-                margin-top:0;
+
+            p {
+                margin-top: 0;
             }
+
             .error-message {
                 color: red;
-                text-align:center;
+                text-align: center;
             }
 
             .content {
@@ -47,6 +52,8 @@
 
                     input {
                         align-items: center;
+                        font-family: manrope;
+                        height:30px;
                     }
 
                     label {
@@ -75,8 +82,9 @@
                         margin: 10px;
                         padding: 10px;
                         width: 100%;
-                        p{
-                            margin:0;
+
+                        p {
+                            margin: 0;
                         }
                     }
 
@@ -95,8 +103,8 @@
                 }
 
                 .input-group {
-                    padding-top:10px;
-                    padding-bottom:10px;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -111,7 +119,7 @@
                     border-radius: 10px;
                     padding: 10px;
                     border: 1px solid rgb(227, 227, 227);
-                    height:35px;
+                    height: 35px;
                 }
 
                 label {
