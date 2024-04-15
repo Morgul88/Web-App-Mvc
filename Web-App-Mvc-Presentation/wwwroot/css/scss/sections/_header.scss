@@ -1,5 +1,19 @@
 header {
 
+    .menu-bar.active {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+        padding-top:50px;
+        a {
+            color: black;
+        }
+    }
+
+    .menu-bar {
+        display: none;
+    }
 
     .container {
         display: flex;
@@ -9,15 +23,86 @@ header {
         @include lg {
         }
 
+
+
         .first-head {
-            display: flex;
+            display: none;
             gap: 2rem;
+            display: none;
+        }
+
+        @media (min-width:1200px) {
+            .first-head {
+                display: flex;
+            }
         }
 
         .head-btn {
-            display: flex;
+            display: none;
             padding: 10px;
             gap: 2rem;
+
+            .menu-bar {
+                display: none;
+            }
+        }
+
+        @media (min-width:1200px) {
+            .head-btn {
+                display: flex;
+            }
+        }
+
+        .menu-box {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+
+
+
+            span {
+                margin-left: 20px;
+                margin-right: 30px;
+            }
+
+            .little-box {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 30px;
+                height: 30px;
+                border: 1px solid transparent;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+                margin-left: 20px;
+            }
+
+            .icon-box {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 600;
+
+                .btn-switch {
+                    display: none;
+                }
+
+                @media (min-width:500px) {
+                    .btn-switch {
+                        display: flex;
+                    }
+                }
+            }
+        }
+
+
+
+        @media (min-width: 1200px) {
+            .menu-box {
+                display: none;
+            }
         }
 
         #logo {
@@ -30,10 +115,10 @@ header {
 
             span {
                 font-weight: 900;
-                font-size:25px;
+                font-size: 25px;
             }
 
-            
+
 
             img {
                 transition: transform 0.3s;
@@ -66,7 +151,6 @@ header {
                 }
 
                 .menu-link-login {
-                    
                     border-radius: 30px;
                 }
             }

@@ -8,6 +8,7 @@
 }
 
 <header>
+   
     <div class="container">
         <div class="first-head">
             <div id="logo" >
@@ -61,9 +62,58 @@
                 }
                 
             </div>
-
+            
+            
         </div>
+        <div class="menu-box">
+                <div class="icon-box">
+                    <img src="~/images/Group 2.svg" alt="logo" /></Link>
+                    <span>Silicon</span>
+                    <div class="btn-switch">
+                        <label>Light</label>
+                        <label class="switch" for="switch-mode">
+                            <input type="checkbox" id="switch-mode" checked="@isDark">
+                            <div class="slider round"></div>
+                        </label>
+                        <label>Dark</label>
+                        
+                    </div>
+                   
+                </div>
+                
+                
+                <div class="little-box" id="little-box">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                
+        </div>
+       
+    </div>
+    <div class="menu-bar" id="menu-bar">
+
+        <a asp-controller="Home" asp-action="Index" asp-fragment="overview" class="menu-link">Overview</a>
+        <a asp-controller="Home" asp-action="Index" asp-fragment="features" class="menu-link">Features</a>
+        <a a asp-controller="Home" asp-action="Contacts" class="menu-link">Contact</a>
+        @if (User.Identity!.IsAuthenticated)
+        {
+            <a a asp-controller="Courses" asp-action="Index" class="menu-link">Courses</a>
+            <a a asp-controller="Admin" asp-action="Index" class="menu-link">Admin</a>
+        }
+
+        @if (!User.Identity!.IsAuthenticated)
+        {
+            <a class="menu-link" asp-controller="Auth" asp-action="Login">Sign in</a>
+            <a class="menu-link" asp-controller="Auth" asp-action="Register">Sign up</a>
+        }
+
+        @if (User.Identity!.IsAuthenticated)
+        {
+
+
+            <a class="menu-link" asp-controller="Auth" asp-action="Logout"><span>Log out</span></a>
+            <a asp-controller="Auth" asp-action="Details">Profile</a>
+            
+        }
 
     </div>
-
 </header>
