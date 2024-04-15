@@ -493,4 +493,60 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
     }
 
     #endregion
+
+    #region Google
+
+    [HttpGet]
+    public IActionResult Google()
+    {
+        var authProps = _signInManager.ConfigureExternalAuthenticationProperties("Google", Url.Action("GoogleCallBack"));
+        return new ChallengeResult("Google",authProps);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GoogleCallBack()
+    {
+        var info = await _signInManager.GetExternalLoginInfoAsync();
+
+        if(info != null)
+        {
+            var userEntity = new ApplicationUser
+            {
+                FirstName = info.Principal.FindFirstValue(ClaimTypes.GivenName)!,
+                LastName = info.Principal.FindFirstValue(ClaimTypes.Surname)!,
+                Email = info.Principal.FindFirstValue(ClaimTypes.Email)!,
+                UserName = info.Principal.FindFirstValue(ClaimTypes.Email)!,
+            };
+
+            var user = await _userManager.FindByEmailAsync(userEntity.Email);
+            if(user == null)
+            {
+                var result = await _userManager.CreateAsync(userEntity);
+                if (result.Succeeded)
+                   user = await _userManager.FindByEmailAsync(userEntity.Email);
+                
+            }
+
+            if(user != null)
+            {
+                if(user.FirstName != userEntity.FirstName || user.LastName != userEntity.LastName || user.Email != userEntity.Email)
+                {
+                    user.FirstName = userEntity.FirstName;
+                    user.LastName = userEntity.LastName;
+                    user.Email = userEntity.Email;
+
+                    await _userManager.UpdateAsync(user);
+                }
+
+                await _signInManager.SignInAsync(user, isPersistent: false);
+
+                if(HttpContext.User != null)
+                    return RedirectToAction("Details", "Auth");
+            }
+        }
+        ViewData["StatusMessage"] = "Failed to authenticate with google";
+        return RedirectToAction("SignIn", "Auth");
+    }
+
+    #endregion
 }

@@ -16,6 +16,13 @@ builder.Services.AddAuthentication().AddFacebook(x =>
     x.Fields.Add("last_name");
 
 });
+builder.Services.AddAuthentication().AddGoogle(x =>
+{
+    x.ClientId = "44904269620-sc16puvffkd5ghe4u4nbhgfshk2aeio8.apps.googleusercontent.com";
+    x.ClientSecret = "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";
+    
+});
+
 builder.Services.AddHttpClient();
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));

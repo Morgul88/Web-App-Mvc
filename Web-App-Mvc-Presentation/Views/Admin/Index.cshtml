@@ -3,8 +3,13 @@
 
 <section id="admin">
     <div class="container">
+        <h1>Create Course</h1>
+        <div class="btn-submit">
+            <a asp-action="CreateCourse" asp-controller="Admin" class="btn-theme-s">Create Course</a>
+            
+        </div>
         <div class="content-material">
-            <h1>Service </h1>
+            <h1>Services </h1>
             <table>
                 <tr>
                     <th>ID</th>
@@ -29,11 +34,7 @@
                 }
             </table>
         </div>
-        <h1>Create Course</h1>
-        <div class="btn-submit">
-            <a asp-action="CreateCourse" asp-controller="Admin" class="btn btn-theme-s">Create Course</a>
-            <a class="btn-theme" asp-controller="Auth" asp-action="Register"><i class="fa-regular fa-user"></i><span>Sign up</span></a>
-        </div>
+        
         
 
         
