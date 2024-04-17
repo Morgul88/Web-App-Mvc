@@ -27,7 +27,7 @@ namespace Web_App_Mvc_Presentation.Controllers
             if (ModelState.IsValid)
             {
                 using var http = new HttpClient();
-
+                
                 var apiKey = "M2FiNzYzMzQtMWJkNi00ODRmLTg1NzQtNjlmOGFmNzE1Yzdh";
                 var url = $"https://localhost:7070/api/Subscribers?email={model.Email}&Key={apiKey}";
                 

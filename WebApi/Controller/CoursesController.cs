@@ -19,7 +19,7 @@ public class CoursesController(DataContext context, HttpClient httpClient) : Con
     private readonly DataContext _context = context;
     private readonly HttpClient _httpClient = httpClient;
 
-
+    [Authorize]
     [UseApiKey]
     [HttpPost]
     public async Task<IActionResult> Create(CourseDto dto)
