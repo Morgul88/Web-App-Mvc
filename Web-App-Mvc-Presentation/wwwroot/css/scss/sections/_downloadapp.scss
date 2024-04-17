@@ -1,24 +1,28 @@
 #download-app {
-    
     padding-top: 10px;
     padding-bottom: 10px;
 
     .container {
         margin-top: 100px;
         margin-bottom: 100px;
-        display: flex;
+        display: block;
 
         .picture {
             width: 100%;
-            display: flex;
+            display: none;
             justify-content: center;
+        }
+        @media (min-width:500px){
+            .picture{
+                display:flex;
+            }
         }
 
         .manage-work {
             p {
                 margin: 0;
             }
-
+            
             padding: 0px;
 
             .app-store {
@@ -51,5 +55,15 @@
                 }
             }
         }
+
+        
+    }
+
+    @media (min-width:1200px) {
+        .container {
+            display: flex;
+        }
+
+       
     }
 }

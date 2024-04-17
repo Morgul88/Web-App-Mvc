@@ -1,14 +1,7 @@
 
 #light-and-dark {
     background: linear-gradient(to right, #33354D 50%, white 50%);
-    position: relative;
-
-    .btn-switch {
-        position: absolute;
-        left: 1200px;
-        top: 0;
-    }
-
+    display:none;
     .container {
         display: flex;
         justify-content: center;
@@ -53,6 +46,13 @@
             img:hover {
                 zoom: 110%;
             }
+            
         }
+    }
+    
+}
+@media (min-width:1200px) {
+    #light-and-dark{
+        display:block;
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
@@ -99,6 +100,8 @@ public class AuthController(UserManager<ApplicationUser> userManager, SignInMana
                 if (response.IsSuccessStatusCode)
                 {
                     var token = await response.Content.ReadAsStringAsync();
+                    _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
                     var cookieOptions = new CookieOptions()
                     {
                         HttpOnly = true,

@@ -49,6 +49,7 @@ builder.Services.ConfigureApplicationCookie(x =>
 builder.Services.AddScoped<AdressService>();
 builder.Services.AddScoped<CourseService>();
 builder.Services.AddScoped<CategoryService>();
+builder.Services.AddHttpClient();
 var app = builder.Build();
 
 app.UseHsts();

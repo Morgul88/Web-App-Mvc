@@ -650,6 +650,9 @@ textarea {
   border: 1px solid gray;
 }
 
+header .menu-bar {
+  display: none;
+}
 header .menu-bar.active {
   display: flex;
   flex-direction: column;
@@ -660,8 +663,10 @@ header .menu-bar.active {
 header .menu-bar.active a {
   color: black;
 }
-header .menu-bar {
-  display: none;
+@media (min-width: 1200px) {
+  header .menu-bar.active {
+    display: none;
+  }
 }
 header .container {
   display: flex;
@@ -895,8 +900,9 @@ right: 0;*/
   display: none;
   position: absolute;
   z-index: -1;
-  top: 0;
+  top: -50px;
   right: 0;
+  width: 900px;
 }
 @media (min-width: 1400px) {
   #showcase .background-image {
@@ -916,6 +922,7 @@ right: 0;*/
   padding-top: 30px;
   z-index: 0;
   width: 100%;
+  padding-bottom: 200px;
 }
 #showcase .container .content h1 {
   font-size: 30px !important;
@@ -960,6 +967,14 @@ right: 0;*/
 }
 #features .container {
   text-align: center;
+  padding: 0;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#features .container h1 {
+  font-size: 30px !important;
 }
 #features .container .box {
   padding: 20px;
@@ -968,39 +983,40 @@ right: 0;*/
   background-color: white;
 }
 #features .container .tool-features {
-  margin-top: 100px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 0px;
   margin-bottom: 50px;
+}
+@media (min-width: 1200px) {
+  #features .container .tool-features {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 }
 #features .container .box1 {
   border-right: 1px solid rgb(226, 226, 226);
   border-bottom: 1px solid rgb(226, 226, 226);
   border-left: 1px solid rgb(226, 226, 226);
-  padding: 20px;
+  text-align: center;
 }
 #features .container .box2 {
   border-bottom: 1px solid rgb(226, 226, 226);
-  padding: 20px;
+  text-align: center;
 }
 #features .container .box3 {
   border-top: 1px solid rgb(226, 226, 226);
-  padding: 20px;
+  text-align: center;
 }
 #features .container .box4 {
   border-left: 1px solid rgb(226, 226, 226);
-  padding: 20px;
+  text-align: center;
 }
 #features .container .box5 {
   border-left: 1px solid rgb(226, 226, 226);
-  padding: 20px;
+  text-align: center;
 }
-#features .container .box6 {
-  padding: 20px;
-}
-
 #signup .container {
   display: flex;
   justify-content: center;
@@ -1213,6 +1229,7 @@ right: 0;*/
   padding: 50px;
   width: 30%;
   border-right: 1px solid rgb(233, 233, 233);
+  display: none;
 }
 #account-detail .container .leftside .btn-submit .btn {
   width: 100%;
@@ -1254,6 +1271,11 @@ right: 0;*/
 }
 #account-detail .container .leftside .profile h4 {
   margin: 0;
+}
+@media (min-width: 1200px) {
+  #account-detail .container .leftside {
+    display: block;
+  }
 }
 #account-detail .container .right-side {
   padding: 50px;
@@ -1342,12 +1364,7 @@ right: 0;*/
 
 #light-and-dark {
   background: linear-gradient(to right, #33354D 50%, white 50%);
-  position: relative;
-}
-#light-and-dark .btn-switch {
-  position: absolute;
-  left: 1200px;
-  top: 0;
+  display: none;
 }
 #light-and-dark .container {
   display: flex;
@@ -1388,13 +1405,32 @@ right: 0;*/
   zoom: 110%;
 }
 
+@media (min-width: 1200px) {
+  #light-and-dark {
+    display: block;
+  }
+}
 #manage-your-work .container {
-  margin-top: 100px;
-  margin-bottom: 100px;
-  display: flex;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+#manage-your-work .container .picture {
+  display: none;
   justify-content: center;
 }
+@media (min-width: 1200px) {
+  #manage-your-work .container .picture {
+    display: flex;
+  }
+}
 #manage-your-work .container .manage-work {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
   padding: 60px;
 }
 #manage-your-work .container .manage-work h1 {
@@ -1411,6 +1447,11 @@ right: 0;*/
   width: 50%;
   margin-top: 30px;
 }
+@media (min-width: 1200px) {
+  #manage-your-work .container {
+    display: flex;
+  }
+}
 
 #download-app {
   padding-top: 10px;
@@ -1419,12 +1460,17 @@ right: 0;*/
 #download-app .container {
   margin-top: 100px;
   margin-bottom: 100px;
-  display: flex;
+  display: block;
 }
 #download-app .container .picture {
   width: 100%;
-  display: flex;
+  display: none;
   justify-content: center;
+}
+@media (min-width: 500px) {
+  #download-app .container .picture {
+    display: flex;
+  }
 }
 #download-app .container .manage-work {
   padding: 0px;
@@ -1456,15 +1502,18 @@ right: 0;*/
 #download-app .container .manage-work .google-store h4 {
   padding: 0;
 }
+@media (min-width: 1200px) {
+  #download-app .container {
+    display: flex;
+  }
+}
 
 #integrate-work {
-  margin-top: 100px;
+  padding-top: 100px;
 }
 #integrate-work .container .head-line {
   text-align: center;
   margin-bottom: 60px;
-  padding-left: 200px;
-  padding-right: 200px;
 }
 #integrate-work .container .boxes-and-icons {
   padding: 10px;
@@ -1473,8 +1522,10 @@ right: 0;*/
   padding-bottom: 15px;
 }
 #integrate-work .container .box {
-  display: flex;
+  display: block;
   gap: 30px;
+  justify-content: center;
+  text-align: center;
 }
 #integrate-work .container .box .link-box {
   text-decoration: none;
@@ -1487,28 +1538,40 @@ right: 0;*/
   border-radius: 20px;
   transition: 0.5s;
 }
+@media (min-width: 1200px) {
+  #integrate-work .container .box {
+    display: flex;
+  }
+}
 
 #dont-miss-anything {
   background-color: rgba(99, 101, 241, 0.0784313725);
 }
 #dont-miss-anything .container {
-  padding-left: 100PX;
-  padding-right: 100PX;
-  margin-top: 100px;
   padding-top: 100px;
   padding-bottom: 100px;
 }
+#dont-miss-anything .container p {
+  padding-right: 50px;
+  padding-left: 50px;
+}
 #dont-miss-anything .container .head-line {
-  display: flex;
+  display: none;
   justify-content: center;
 }
 #dont-miss-anything .container .head-line img {
   padding-left: 10px;
 }
+@media (min-width: 500px) {
+  #dont-miss-anything .container .head-line {
+    display: flex;
+  }
+}
 #dont-miss-anything .container .check-signup {
   justify-content: space-around;
-  display: flex;
+  display: none;
   align-items: center;
+  padding-left: 50px;
 }
 #dont-miss-anything .container .check-signup .box {
   display: block;
@@ -1531,15 +1594,23 @@ right: 0;*/
 #dont-miss-anything .container .check-signup .box input[type=checkbox]:checked {
   background-color: #007bff;
 }
+@media (min-width: 800px) {
+  #dont-miss-anything .container .check-signup {
+    display: flex;
+  }
+}
 #dont-miss-anything .container .sub {
   margin-top: 0px;
   display: flex;
   justify-content: center;
   margin-bottom: 0px;
   align-items: center;
+  padding-right: 50px;
+  padding-left: 50px;
 }
 #dont-miss-anything .container .sub button {
   height: 34px;
+  width: 100%;
 }
 #dont-miss-anything .container .sub input {
   border-radius: 10px;
@@ -1547,6 +1618,15 @@ right: 0;*/
   margin-right: 30px;
   border: 1px solid rgb(207, 207, 207);
   padding: 10px;
+}
+#dont-miss-anything .container .News {
+  display: flex;
+  padding-left: 50px;
+}
+@media (min-width: 800px) {
+  #dont-miss-anything .container .News {
+    display: none;
+  }
 }
 
 #courses .container .alert-success {
@@ -1951,17 +2031,25 @@ right: 0;*/
 #contact .map {
   position: relative;
   z-index: 1;
+  display: none;
 }
 #contact .map img {
   width: 100%;
   z-index: 1;
 }
+@media (min-width: 600px) {
+  #contact .map {
+    display: block;
+  }
+}
 #contact .container .contact-info {
   display: flex;
   padding-top: 100px;
   padding-bottom: 100px;
+  justify-content: center;
 }
 #contact .container .contact-info .info {
+  display: none;
   position: relative;
   z-index: 0;
   padding-right: 150px;
@@ -1979,6 +2067,11 @@ right: 0;*/
 }
 #contact .container .contact-info .info .details .box-detail i {
   padding-left: 10px;
+}
+@media (min-width: 1200px) {
+  #contact .container .contact-info .info {
+    display: block;
+  }
 }
 #contact .container .contact-info form {
   background-color: white;
@@ -2052,6 +2145,7 @@ right: 0;*/
   padding: 50px;
   width: 30%;
   border-right: 1px solid rgb(233, 233, 233);
+  display: none;
 }
 #security .container .leftside .btn-submit .btn {
   width: 100%;
@@ -2085,6 +2179,11 @@ right: 0;*/
 }
 #security .container .leftside .profile h4 {
   margin: 0;
+}
+@media (min-width: 1200px) {
+  #security .container .leftside {
+    display: block;
+  }
 }
 #security .container .right-side {
   width: 60%;

@@ -4,27 +4,29 @@ using Infrastructure.Entities;
 using Infrastructure.Factories;
 using Infrastructure.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using WebApi.Filters;
 
 namespace WebApi.Controller;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CoursesController(DataContext context) : ControllerBase
+public class CoursesController(DataContext context, HttpClient httpClient) : ControllerBase
 {
     private readonly DataContext _context = context;
+    private readonly HttpClient _httpClient = httpClient;
 
-    [Authorize]
+
     [UseApiKey]
     [HttpPost]
     public async Task<IActionResult> Create(CourseDto dto)
     {
-        if(ModelState.IsValid)
+        if (ModelState.IsValid)
         {
-            if(!await _context.Courses.AnyAsync(x => x.Title == dto.Title))
+            if (!await _context.Courses.AnyAsync(x => x.Title == dto.Title))
             {
                 var corseEntity = new CourseEntity
                 {
@@ -43,7 +45,7 @@ public class CoursesController(DataContext context) : ControllerBase
                 _context.Courses.Add(corseEntity);
                 await _context.SaveChangesAsync();
 
-                return Created("",null);
+                return Created("", null);
             }
             return Conflict();
         }
@@ -51,12 +53,13 @@ public class CoursesController(DataContext context) : ControllerBase
         return BadRequest();
     }
 
-    
 
+    [Authorize]
+    [UseApiKey]
     [HttpGet]
-    public async Task<IActionResult> GetAll(string category ="",string searchQuery = "", int pageNumber = 1, int pageSize = 6)
+    public async Task<IActionResult> GetAll(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 6)
     {
-        
+
         var query = _context.Courses.AsQueryable();
         if (!string.IsNullOrEmpty(category) && category != "all")
         {
@@ -84,16 +87,19 @@ public class CoursesController(DataContext context) : ControllerBase
         };
 
         return Ok(response);
+        
     }
 
-
+    [Authorize]
     [UseApiKey]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetOne(string id)
     {
+
+
         var courseEntity = await _context.Courses.FirstOrDefaultAsync(x => x.Id == id);
 
-        if(courseEntity != null)
+        if (courseEntity != null)
         {
             return Ok(courseEntity);
         }
@@ -112,7 +118,7 @@ public class CoursesController(DataContext context) : ControllerBase
 
         if (course != null)
         {
-            
+
             course.Title = dto.Title;
             course.Author = dto.Author;
             course.IsBestSeller = dto.IsBestSeller;

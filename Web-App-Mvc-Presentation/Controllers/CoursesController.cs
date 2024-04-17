@@ -24,38 +24,36 @@ public class CoursesController(HttpClient httpClient, IConfiguration configurati
     private readonly DataContext _context = context;
     private readonly CourseService _courseService = courseService;
     private readonly CategoryService _categoryService = categoryService;
+
     [HttpGet]
     [Route("/Courses")]
     public async Task<IActionResult> CourseView(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 6)
     {
-        if (HttpContext.Request.Cookies.TryGetValue("Accesstoken", out var token))
-        {
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-            
 
             var courseResult = await _courseService.GetCoursesAsync(category,searchQuery, pageNumber, pageSize);
-
-            var viewModel = new CourseIndexViewModel
+            if(courseResult != null)
             {
-                Categories = await _categoryService.GetAllCategoriesAsync(),
-                
-                Courses = courseResult.Courses,
-                Pagination = new Pagination
+                var viewModel = new CourseIndexViewModel
                 {
-                    PageSize = pageSize,
-                    CurrentPage = pageNumber,
-                    TotalPages = courseResult.TotalPages,
-                    TotalItems = courseResult.TotalItems
-                }
+                    Categories = await _categoryService.GetAllCategoriesAsync(),
 
-            };
-            return View(viewModel);
+                    Courses = courseResult.Courses,
+                    Pagination = new Pagination
+                    {
+                        PageSize = pageSize,
+                        CurrentPage = pageNumber,
+                        TotalPages = courseResult.TotalPages,
+                        TotalItems = courseResult.TotalItems
+                    }
 
-        };
+                };
+                return View(viewModel);
+            }
+            else
+            {
+                return View();
+            }
 
-
-        return View();
     }
 
     [HttpGet]

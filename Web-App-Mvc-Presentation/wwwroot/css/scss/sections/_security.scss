@@ -6,7 +6,7 @@
             padding: 50px;
             width: 30%;
             border-right: 1px solid rgb(233, 233, 233);
-
+            display:none;
             .btn-submit {
 
 
@@ -49,6 +49,12 @@
                 h4 {
                     margin: 0;
                 }
+            }
+        }
+
+        @media (min-width:1200px) {
+            .leftside {
+                display: block;
             }
         }
 

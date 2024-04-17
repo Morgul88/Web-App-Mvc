@@ -1,14 +1,30 @@
 #manage-your-work {
     .container {
-        margin-top: 100px;
-        margin-bottom: 100px;
-        display: flex;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        display: block;
         justify-content: center;
+        align-items:center;
+        .picture {
+            display: none;
+            justify-content:center;
+        }
+
+        @media (min-width:1200px) {
+            .picture {
+                display: flex;
+            }
+        }
 
         .manage-work {
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            text-align:center;
 
             h1 {
                 margin-bottom: 30px;
+                
             }
 
             padding: 60px;
@@ -26,6 +42,12 @@
                 width: 50%;
                 margin-top: 30px;
             }
+        }
+    }
+
+    @media (min-width:1200px) {
+        .container {
+            display: flex;
         }
     }
 }

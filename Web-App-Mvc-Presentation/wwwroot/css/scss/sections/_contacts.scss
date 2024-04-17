@@ -6,10 +6,16 @@
     .map {
         position: relative;
         z-index: 1;
-
+        display:none;
         img {
             width: 100%;
             z-index: 1;
+        }
+    }
+
+    @media (min-width:600px) {
+        .map {
+            display: block;
         }
     }
 
@@ -19,8 +25,10 @@
             display: flex;
             padding-top: 100px;
             padding-bottom: 100px;
-            
+            justify-content: center;
+
             .info {
+                display: none;
                 position: relative;
                 z-index: 0;
                 padding-right: 150px;
@@ -43,6 +51,12 @@
                             padding-left: 10px;
                         }
                     }
+                }
+            }
+
+            @media (min-width:1200px) {
+                .info {
+                    display: block;
                 }
             }
 

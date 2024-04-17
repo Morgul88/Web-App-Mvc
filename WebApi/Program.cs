@@ -9,7 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.RegisterJwt(builder.Configuration);
 builder.Services.RegisterDbContexts(builder.Configuration);
-
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 

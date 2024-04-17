@@ -2,14 +2,18 @@
     background-color: $theme-opacity;
 
     .container {
-        padding-left: 100PX;
-        padding-right: 100PX;
-        margin-top: 100px;
+
+
+        p {
+            padding-right: 50px;
+            padding-left: 50px;
+        }
+
         padding-top: 100px;
         padding-bottom: 100px;
-        
+
         .head-line {
-            display: flex;
+            display: none;
             justify-content: center;
 
             img {
@@ -17,11 +21,17 @@
             }
         }
 
+        @media (min-width:500px) {
+            .head-line {
+                display: flex;
+            }
+        }
+
         .check-signup {
             justify-content: space-around;
-            display: flex;
+            display: none;
             align-items: center;
-
+            padding-left:50px;
             .box {
                 display: block;
                 padding: 20px;
@@ -50,21 +60,43 @@
             }
         }
 
+        @media (min-width:800px) {
+            .check-signup {
+                display: flex;
+            }
+        }
+
         .sub {
             margin-top: 0px;
             display: flex;
             justify-content: center;
             margin-bottom: 0px;
-            align-items:center;
-            button{
-                height:34px;
+            align-items: center;
+            padding-right: 50px;
+            padding-left: 50px;
+
+            button {
+                height: 34px;
+                width: 100%;
             }
+
             input {
                 border-radius: 10px;
                 width: 100%;
                 margin-right: 30px;
                 border: 1px solid rgb(207, 207, 207);
                 padding: 10px;
+            }
+        }
+
+        .News {
+            display: flex;
+            padding-left: 50px;
+        }
+
+        @media (min-width:800px) {
+            .News {
+                display: none;
             }
         }
     }

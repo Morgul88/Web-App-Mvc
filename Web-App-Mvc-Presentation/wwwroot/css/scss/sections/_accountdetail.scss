@@ -6,7 +6,7 @@
             padding: 50px;
             width: 30%;
             border-right: 1px solid rgb(233, 233, 233);
-
+            display:none;
             .btn-submit {
 
 
@@ -62,7 +62,11 @@
                 }
             }
         }
-
+        @media (min-width:1200px){
+            .leftside{
+                display: block;
+            }
+        }
         .right-side {
             padding: 50px;
             width: 70%;
